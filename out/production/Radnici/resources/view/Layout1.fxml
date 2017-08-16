@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.controllers.LayoutController">
+   <top>
+      <ToolBar BorderPane.alignment="CENTER">
+        <items>
+          <Button fx:id="počDugme" mnemonicParsing="false" onAction="#počDugmeKlik" text="HOME" />
+        </items>
+      </ToolBar>
+   </top>
+   <bottom>
+      <Button fx:id="dodajDugme" mnemonicParsing="false" onAction="#dodajDugmeKlik" prefHeight="40.0" prefWidth="192.0" text="ADD NEW WORKER" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" top="20.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
+</BorderPane>

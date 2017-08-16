@@ -1,0 +1,10 @@
+.date-picker:error1 {
+    -fx-border-color: red ;
+    -fx-focus-color: #ac4402;
+}
+
+.choice-box:error2 {
+    -fx-border-color: red ;
+    -fx-focus-color: #ac4402;
+}
+
