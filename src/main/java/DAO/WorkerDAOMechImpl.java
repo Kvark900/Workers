@@ -6,7 +6,7 @@ import main.java.model.Worker;
 
 import java.sql.*;
 
-public class DaoMechDept {
+public class WorkerDAOMechImpl implements WorkerDAO {
     private Connection connection = null;
     private Statement statement = null;
     private ResultSet resultSet = null;
@@ -17,7 +17,7 @@ public class DaoMechDept {
     private final String password = "Kvark";
 
     //Get Worker (nameSurname)
-    public ObservableList<Worker> getWorkersNameSurnameMechDep() {
+    public ObservableList<Worker> getWorkersNameSurname() {
         ObservableList<Worker> nameSurname = FXCollections.observableArrayList();
 
         try {
@@ -71,7 +71,7 @@ public class DaoMechDept {
     }
 
     //Get Worker (allInfo)
-    public Worker getWorkerInfo(String nameSurname) {
+    public Worker getWorkersInfo(String nameSurname) {
         Worker worker = null;
         try {
             Class.forName(driver);

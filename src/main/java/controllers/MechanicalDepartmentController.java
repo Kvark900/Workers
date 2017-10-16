@@ -8,7 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import main.java.DAO.DaoMechDept;
+import main.java.DAO.WorkerDAO;
+import main.java.DAO.WorkerDAOFactory;
 import main.java.model.Worker;
 
 public class MechanicalDepartmentController {
@@ -34,7 +35,7 @@ public class MechanicalDepartmentController {
     @FXML private TableView<Worker> workersTable;
     @FXML private TableColumn<Worker, String> workersTableColumn;
 
-    private DaoMechDept daoMechDept;
+    private WorkerDAO workerDAO = WorkerDAOFactory.getWorkerDAOByDepartment("mechanical");
     private final ObservableList<Worker> workersList = FXCollections.observableArrayList();
     private Worker selectedItems;
 
@@ -55,8 +56,7 @@ public class MechanicalDepartmentController {
     //Populate the table
     @FXML
     public void populateTable(){
-        daoMechDept = new DaoMechDept();
-        for(Worker worker : daoMechDept.getWorkersNameSurnameMechDep()) workersList.addAll(worker);
+        for(Worker worker : workerDAO.getWorkersNameSurname()) workersList.addAll(worker);
         workersTable.setItems(workersList);
     }
 
@@ -65,35 +65,33 @@ public class MechanicalDepartmentController {
     private void deleteBtnClicked(){
         selectedItems = workersTable.getSelectionModel().getSelectedItem();
         workersTable.getItems().remove(selectedItems);
-        daoMechDept = new DaoMechDept();
-        daoMechDept.deleteSelectedWorker(selectedItems);
+        workerDAO.deleteSelectedWorker(selectedItems);
     }
 
     //Show worker's information when row is selected
     @FXML
     private void rowSelected() {
-        daoMechDept = new DaoMechDept();
         workersTable.getSelectionModel().selectedItemProperty().
                 addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
-                        name.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getName());
-                        surname.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getSurname());
-                        age.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getAge());
-                        city.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getCity());
-                        address.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getAddress());
-                        telephoneNum.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getTelephoneNum());
-                        email.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getEmail());
-                        idNum.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getIdNumber().toString());
-                        startDate.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getStartDate().toString());
-                        contractType.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getContractType());
+                        name.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getName());
+                        surname.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getSurname());
+                        age.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getAge());
+                        city.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getCity());
+                        address.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getAddress());
+                        telephoneNum.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getTelephoneNum());
+                        email.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getEmail());
+                        idNum.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getIdNumber().toString());
+                        startDate.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getStartDate().toString());
+                        contractType.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getContractType());
 
-                        if(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getEndDate()== null)endDate.setText("");
-                        else endDate.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getEndDate().toString());
+                        if(workerDAO.getWorkersInfo(newValue.getNameSurname()).getEndDate()== null)endDate.setText("");
+                        else endDate.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getEndDate().toString());
 
-                        payFreq.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getPayFreq());
-                        accountNum.setText(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getAccountNum().toString());
-                        taxCoefficient.setText(String.valueOf(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getTaxCoeficient()));
-                        netSalary.setText(String.valueOf(daoMechDept.getWorkerInfo(newValue.getNameSurname()).getNetSalary()));
+                        payFreq.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getPayFreq());
+                        accountNum.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getAccountNum().toString());
+                        taxCoefficient.setText(String.valueOf(workerDAO.getWorkersInfo(newValue.getNameSurname()).getTaxCoeficient()));
+                        netSalary.setText(String.valueOf(workerDAO.getWorkersInfo(newValue.getNameSurname()).getNetSalary()));
                     }
                 });
     }

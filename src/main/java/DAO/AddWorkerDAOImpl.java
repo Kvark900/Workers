@@ -3,7 +3,7 @@ package main.java.DAO;
 import java.sql.*;
 import java.time.LocalDate;
 
-public class DaoStageAdd {
+public class AddWorkerDAOImpl implements AddWorkerDAO {
     private Connection connection = null;
 
     public void insertIntoDatabase(String name, String surname, LocalDate age, String address, String city,

@@ -7,7 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import main.java.DAO.DaoStageAdd;
+import main.java.DAO.AddWorkerDAOImpl;
 import main.java.Main;
 import main.java.Service.StageAddService;
 
@@ -138,7 +138,7 @@ public class StageAddController {
 
     //Submit entered information - OK button pressed
     @FXML private void okDugmeKlik() throws IOException{
-        DaoStageAdd daoStageAdd = new DaoStageAdd();
+        AddWorkerDAOImpl daoStageAddImpl = new AddWorkerDAOImpl();
         List<Control> controlList = new ArrayList<>();
         int count=0;
 
@@ -170,7 +170,7 @@ public class StageAddController {
 
         //If required fields are valid save data
         if (count == controlList.size()) {
-            daoStageAdd.insertIntoDatabase(name.getText().trim(), surname.getText().trim(), age.getValue(), address.getText().trim(),
+            daoStageAddImpl.insertIntoDatabase(name.getText().trim(), surname.getText().trim(), age.getValue(), address.getText().trim(),
                 city.getText().trim(), telephoneNum.getText().trim(), email.getText().trim(), deptBox.getValue(),
                 Long.parseLong(idNum.getText().trim()), startDate.getValue(), contractType.getValue(), endDate.getValue(),
                 payFreq.getValue(), Long.parseLong(accountNum.getText().trim()), Double.parseDouble(taxCoeficient.getText().trim()),
