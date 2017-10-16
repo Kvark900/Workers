@@ -14,7 +14,7 @@
   }
 
 /*Style of each column header's background in the tableView*/
-/*.table-view .column-header-background{
+/*.table-views .column-header-background{
     -fx-background-color: linear-gradient(#131313 0.0%, #424141 100.0%);
 }*/
 
@@ -38,14 +38,14 @@
   }
 
 
-/*Style for each < non odd> row of table view*/
+/*Style for each < non odd> row of table views*/
 /* .table-row-cell{
     -fx-background-color: white;
     -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
     -fx-padding: 0.0em;
 }
 
-//Style for each <odd> row of table view
+//Style for each <odd> row of table views
 .table-row-cell:odd{
     -fx-background-color: orange;
     -fx-background-insets: 0.0, 0.0 0.0 1.0 0.0;
@@ -53,21 +53,21 @@
 }
 */
 
-/*Style of each entire row in the table view*/
+/*Style of each entire row in the table views*/
   .table-row-cell:selected {
       -fx-text-fill: white;
       -fx-background-color: darkblue;
   }
 
 
-/*Style of each entire row in the table view when is hovered*/
+/*Style of each entire row in the table views when is hovered*/
   .table-row-cell:hover {
       -fx-background-color: lightblue;
 
   }
 
 /*
-//Style of each entire row in the table view when is getting focused
+//Style of each entire row in the table views when is getting focused
 .table-row-cell:focused {
     -fx-background-color:darkblue;
     -fx-text-fill: black;

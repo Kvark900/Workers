@@ -27,7 +27,7 @@ public class Main extends Application {
 
     private static void showLayout1() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/resources/view/Layout1.fxml"));
+        loader.setLocation(Main.class.getResource("/views/Layout1.fxml"));
         layout1 = loader.load();
         Scene scena1 = new Scene(layout1);
         stage1.setScene(scena1);
@@ -36,14 +36,14 @@ public class Main extends Application {
 
     public static void showSceneBtn() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/resources/view/SceneBtn.fxml"));
+        loader.setLocation(Main.class.getResource("/views/SceneBtn.fxml"));
         BorderPane rasporedSaDugmadima = loader.load();
         layout1.setCenter(rasporedSaDugmadima);
     }
 
     public static void  showElectrical () throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/resources/view/ElectricalDepartment.fxml"));
+        loader.setLocation(Main.class.getResource("/views/ElectricalDepartment.fxml"));
         BorderPane elOdjel;
         elOdjel = loader.load();
         ElectricalDepartmentController electricalDepartmentController = loader.getController();
@@ -53,7 +53,7 @@ public class Main extends Application {
 
     public static void  showMechanical () throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/resources/view/MechanicalDepartment.fxml"));
+        loader.setLocation(Main.class.getResource("/views/MechanicalDepartment.fxml"));
         BorderPane mehOdjel;
         mehOdjel = loader.load();
         MechanicalDepartmentController mechanicalDepartmentController = loader.getController();
@@ -63,15 +63,15 @@ public class Main extends Application {
 
     public static void showStageAdd() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/resources/view/StageAdd.fxml"));
+        loader.setLocation(Main.class.getResource("/views/StageAdd.fxml"));
         BorderPane dodajRadnika;
         dodajRadnika = loader.load();
         stageAdd = new Stage();
         stageAdd.setTitle("Dodaj Novog Radnika");
         stageAdd.resizableProperty().setValue(Boolean.FALSE);
         Scene scene = new Scene(dodajRadnika);
-        scene.getStylesheets().addAll(Main.class.getResource("/resources/css/text-field-red-border.css").toExternalForm(),
-                Main.class.getResource("/resources/css/date-picker-red-border.css").toExternalForm());
+        scene.getStylesheets().addAll(Main.class.getResource("/css/text-field-red-border.css").toExternalForm(),
+                Main.class.getResource("/css/date-picker-red-border.css").toExternalForm());
         stageAdd.setScene(scene);
         stageAdd.initModality(Modality.WINDOW_MODAL);
         stageAdd.initOwner(stage1);
