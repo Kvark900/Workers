@@ -7,22 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/css/date-picker-red-border.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/css/file.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/css/text-field-red-border.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/images/electrical1.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/images/gifweb.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/images/mechanical.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/view/ElectricalDepartment.fxml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/view/Layout1.fxml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/view/MechanicalDepartment.fxml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/view/SceneBtn.fxml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/resources/view/StageAdd.fxml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Radnici.iml" afterPath="$PROJECT_DIR$/Workers.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/cssdialects.xml" afterPath="$PROJECT_DIR$/.idea/cssdialects.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -156,7 +140,7 @@
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
-              <caret line="6" column="20" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="20" />
+              <caret line="6" column="13" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -346,6 +330,68 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Workers(cloned1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Workers(cloned1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Workers(cloned1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Workers(cloned1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Workers(cloned1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Workers(cloned1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Workers(cloned1)" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1028,7 +1074,7 @@
       <workItem from="1502897848433" duration="8745000" />
       <workItem from="1502907746874" duration="110000" />
       <workItem from="1502907888479" duration="19000" />
-      <workItem from="1508152201256" duration="254000" />
+      <workItem from="1508152201256" duration="424000" />
     </task>
     <task id="LOCAL-00001" summary="Added .gitingore file">
       <created>1508152304672</created>
@@ -1037,11 +1083,25 @@
       <option name="project" value="LOCAL" />
       <updated>1508152304672</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Renamed to Workers">
+      <created>1508152465596</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1508152465596</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Renamed to Workers">
+      <created>1508152475774</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1508152475774</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="515503000" />
+    <option name="totallyTimeSpent" value="515673000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1103,7 +1163,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added .gitingore file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added .gitingore file" />
+    <MESSAGE value="Renamed to Workers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed to Workers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1173,22 +1234,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/images/mechanical.gif">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/images/mechanical.gif">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/images/gifweb.gif">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/images/gifweb.gif">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/images/electrical1.gif">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/images/electrical1.gif">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/view/Layout1.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/view/Layout1.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -1198,7 +1259,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/view/StageAdd.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/view/StageAdd.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -1208,7 +1269,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/view/SceneBtn.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/view/SceneBtn.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
@@ -1225,21 +1286,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/css/file.css">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/css/file.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/css/text-field-red-border.css">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/css/text-field-red-border.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/css/date-picker-red-border.css">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/css/date-picker-red-border.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
@@ -1267,23 +1328,25 @@
     <entry file="dbDummy://dbtable:/840cb20f/3a578d76-721f-4a0a-8e2f-45523af90a2b/TEST.INFORMATION_SCHEMA.RADNICI" />
     <entry file="dbDummy://dbtable:/840cb20f/3a578d76-721f-4a0a-8e2f-45523af90a2b/TEST.INFORMATION_SCHEMA.RADNICI" />
     <entry file="dbDummy://dbtable:/840cb20f/3a578d76-721f-4a0a-8e2f-45523af90a2b/TEST.INFORMATION_SCHEMA.RADNICI" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/view/ElectricalDepartment.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/view/ElectricalDepartment.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/resources/view/MechanicalDepartment.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/view/MechanicalDepartment.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
           <caret line="47" column="25" lean-forward="false" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1388,7 +1451,7 @@
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="6" column="20" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="20" />
+          <caret line="6" column="13" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding />
         </state>
       </provider>
