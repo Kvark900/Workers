@@ -1,4 +1,4 @@
-package main.java.DAO;
+package com.kemal.workers.DAO;
 
 /**
  * Created by Keno&Kemo on 16.10.2017..

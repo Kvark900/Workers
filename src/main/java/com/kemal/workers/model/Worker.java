@@ -1,4 +1,4 @@
-package main.java.model;
+package com.kemal.workers.model;
 import java.time.LocalDate;
 
 public class Worker {

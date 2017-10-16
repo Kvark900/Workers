@@ -1,12 +1,13 @@
-package main.java.DAO;
+package com.kemal.workers.DAO;
 
+
+import com.kemal.workers.model.Worker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import main.java.model.Worker;
 
 import java.sql.*;
 
-public class WorkerDAOElecImpl implements WorkerDAO {
+public class WorkerDAOMechImpl implements WorkerDAO {
     private Connection connection = null;
     private Statement statement = null;
     private ResultSet resultSet = null;
@@ -19,11 +20,12 @@ public class WorkerDAOElecImpl implements WorkerDAO {
     //Get Worker (nameSurname)
     public ObservableList<Worker> getWorkersNameSurname() {
         ObservableList<Worker> nameSurname = FXCollections.observableArrayList();
+
         try {
             Class.forName(driver);
             connection = DriverManager.getConnection(URL, user, password);
             statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT *FROM information_schema.radnici WHERE odjeljenje = 'Electrical'");
+            resultSet = statement.executeQuery("SELECT *FROM information_schema.radnici WHERE odjeljenje = 'Mechanical'");
 
             while (resultSet.next()) {
                 String imePrezime = resultSet.getString("ime") + " " + resultSet.getString("prezime");
@@ -50,7 +52,7 @@ public class WorkerDAOElecImpl implements WorkerDAO {
         try {
             Class.forName(driver);
             connection = DriverManager.getConnection(URL, user, password);
-            preparedStatement = connection.prepareStatement("DELETE FROM information_schema.radnici WHERE ime = ? AND prezime = ? AND odjeljenje = 'Electrical'");
+            preparedStatement = connection.prepareStatement("DELETE FROM information_schema.radnici WHERE ime = ? AND prezime = ? AND odjeljenje = 'Mechanical'");
             preparedStatement.setString(1, worker.getNameSurname().split(" ")[0]);
             preparedStatement.setString(2, worker.getNameSurname().split(" ")[1]);
             preparedStatement.executeUpdate();
@@ -66,6 +68,7 @@ public class WorkerDAOElecImpl implements WorkerDAO {
                 e.printStackTrace();
             }
         }
+
     }
 
     //Get Worker (allInfo)
@@ -79,7 +82,7 @@ public class WorkerDAOElecImpl implements WorkerDAO {
             preparedStatement.setString(1, nameSurname.split(" ")[0]);
             preparedStatement.setString(2, nameSurname.split(" ")[1]);
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+            if (resultSet.next()){
                 worker = new Worker(resultSet.getString("ime"), resultSet.getString("prezime"),
                         resultSet.getDate("godište").toLocalDate(), resultSet.getString("grad"),
                         resultSet.getString("adresa"), resultSet.getString("telefon"),
@@ -88,10 +91,10 @@ public class WorkerDAOElecImpl implements WorkerDAO {
                         resultSet.getString("contractType"), resultSet.getDate("endDate").toLocalDate(),
                         resultSet.getString("payFreq"), resultSet.getLong("accountNumber"),
                         resultSet.getDouble("taxCoeficient"), resultSet.getDouble("netSalary"));
-
                 statement.close();
                 resultSet.close();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

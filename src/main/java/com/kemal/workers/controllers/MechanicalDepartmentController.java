@@ -1,5 +1,9 @@
-package main.java.controllers;
+package com.kemal.workers.controllers;
 
+
+import com.kemal.workers.DAO.WorkerDAO;
+import com.kemal.workers.DAO.WorkerDAOFactory;
+import com.kemal.workers.model.Worker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,80 +12,69 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import main.java.DAO.WorkerDAO;
-import main.java.DAO.WorkerDAOFactory;
-import main.java.model.Worker;
 
-import java.io.IOException;
+public class MechanicalDepartmentController {
 
-public class ElectricalDepartmentController {
-
-    @FXML private Label name;
+    @FXML
+    private Label name;
     @FXML private Label surname;
     @FXML private Label age;
     @FXML private Label city;
     @FXML private Label address;
     @FXML private Label telephoneNum;
     @FXML private Label email;
-    @FXML
-    private Label idNum;
-    @FXML
-    private Label startDate;
-    @FXML
-    private Label contractType;
-    @FXML
-    private Label endDate;
-    @FXML
-    private Label payFreq;
-    @FXML
-    private Label accountNum;
-    @FXML
-    private Label taxCoefficient;
-    @FXML
-    private Label netSalary;
+    @FXML Label idNum;
+    @FXML Label startDate;
+    @FXML Label contractType;
+    @FXML Label endDate;
+    @FXML Label payFreq;
+    @FXML Label accountNum;
+    @FXML Label taxCoefficient;
+    @FXML Label netSalary;
+
     @FXML Button refreshBtn;
     @FXML Button deletBtn;
     @FXML private TableView<Worker> workersTable;
     @FXML private TableColumn<Worker, String> workersTableColumn;
 
-    private WorkerDAO workerDAO = WorkerDAOFactory.getWorkerDAOByDepartment("Electrical");
+    private WorkerDAO workerDAO = WorkerDAOFactory.getWorkerDAOByDepartment("mechanical");
     private final ObservableList<Worker> workersList = FXCollections.observableArrayList();
+    private Worker selectedItems;
 
     //initialize method
-    public void initialize() throws IOException {
+    @FXML
+    public void initialize(){
         workersTableColumn.setCellValueFactory(new PropertyValueFactory<>("nameSurname"));
         rowSelected();
     }
 
-    //Refresh table when button is clicked
+    //Refresh the table when button is clicked
     @FXML
-    public void osvježiBtnKlik() {
+    public void osvježiBtnKlik(){
         workersList.removeAll(workersList);
         populateTable();
     }
 
-    //Delete worker
-    @FXML
-    private void obrišiBtnKlik() {
-        Worker selectedItems = workersTable.getSelectionModel().getSelectedItem();
-        workersTable.getItems().remove(selectedItems);
-        workerDAO.deleteSelectedWorker(selectedItems);
-    }
-
     //Populate the table
     @FXML
-    public void populateTable() {
+    public void populateTable(){
         for(Worker worker : workerDAO.getWorkersNameSurname()) workersList.addAll(worker);
         workersTable.setItems(workersList);
+    }
+
+    //Delete a worker
+    @FXML
+    private void deleteBtnClicked(){
+        selectedItems = workersTable.getSelectionModel().getSelectedItem();
+        workersTable.getItems().remove(selectedItems);
+        workerDAO.deleteSelectedWorker(selectedItems);
     }
 
     //Show worker's information when row is selected
     @FXML
     private void rowSelected() {
-
         workersTable.getSelectionModel().selectedItemProperty().
                 addListener((observable, oldValue, newValue) -> {
-
                     if (newValue != null) {
                         name.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getName());
                         surname.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getSurname());
@@ -105,9 +98,5 @@ public class ElectricalDepartmentController {
                 });
     }
 
+
 }
-
-
-
-
-

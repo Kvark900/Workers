@@ -1,5 +1,8 @@
-package main.java.controllers;
+package com.kemal.workers.controllers;
 
+import com.kemal.workers.DAO.AddWorkerDAOImpl;
+import com.kemal.workers.Main;
+import com.kemal.workers.Service.StageAddService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
@@ -7,9 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
-import main.java.DAO.AddWorkerDAOImpl;
-import main.java.Main;
-import main.java.Service.StageAddService;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
-package main.java.controllers;
+package com.kemal.workers.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import main.java.Main;
+import com.kemal.workers.Main;
 
 import java.io.IOException;
 

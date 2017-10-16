@@ -1,13 +1,13 @@
-package main.java.controllers;
+package com.kemal.workers.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import main.java.Main;
+import com.kemal.workers.Main;
 
 import java.io.IOException;
 
-public class SceneBtnController {
+public class SceneWithButtonsController {
     @FXML Button mehDugme;
     @FXML Button elDugme;
     @FXML ImageView mehImg;

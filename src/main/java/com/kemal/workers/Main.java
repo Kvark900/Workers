@@ -1,13 +1,13 @@
-package main.java;
+package com.kemal.workers;
 
+import com.kemal.workers.controllers.ElectricalDepartmentController;
+import com.kemal.workers.controllers.MechanicalDepartmentController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import main.java.controllers.ElectricalDepartmentController;
-import main.java.controllers.MechanicalDepartmentController;
 
 import java.io.IOException;
 
