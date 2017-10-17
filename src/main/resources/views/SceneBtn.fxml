@@ -10,14 +10,14 @@
    <top>
       <AnchorPane prefHeight="318.0" prefWidth="494.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="mehDugme" layoutX="53.0" layoutY="62.0" mnemonicParsing="false" onAction="#mehDugmeKlik" prefHeight="70.0" prefWidth="215.0" text="MECHANICAL DEPARTMENT" />
-            <ImageView fx:id="mehImg" fitHeight="88.0" fitWidth="104.0" layoutX="285.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="mechanicalDepartmentButton" layoutX="53.0" layoutY="62.0" mnemonicParsing="false" onAction="#mehDugmeKlik" prefHeight="70.0" prefWidth="215.0" text="MECHANICAL DEPARTMENT" />
+            <ImageView fx:id="mechanical" fitHeight="88.0" fitWidth="104.0" layoutX="285.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/mechanical.gif" />
                </image>
             </ImageView>
-            <Button fx:id="elDugme" layoutX="53.0" layoutY="166.0" mnemonicParsing="false" onAction="#elDugmeKlik" prefHeight="70.0" prefWidth="214.0" text="ELECTRICAL DEPARTMENT" />
-            <ImageView fx:id="elImg" fitHeight="90.0" fitWidth="114.0" layoutX="285.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="electricalDepartmentButton" layoutX="53.0" layoutY="166.0" mnemonicParsing="false" onAction="#elDugmeKlik" prefHeight="70.0" prefWidth="214.0" text="ELECTRICAL DEPARTMENT" />
+            <ImageView fx:id="electrical" fitHeight="90.0" fitWidth="114.0" layoutX="285.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/electrical1.gif" />
                </image>

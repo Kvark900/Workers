@@ -21,19 +21,19 @@ public class MechanicalDepartmentController {
     @FXML private Label age;
     @FXML private Label city;
     @FXML private Label address;
-    @FXML private Label telephoneNum;
+    @FXML private Label telephoneNumber;
     @FXML private Label email;
-    @FXML Label idNum;
+    @FXML Label idNumber;
     @FXML Label startDate;
     @FXML Label contractType;
     @FXML Label endDate;
-    @FXML Label payFreq;
-    @FXML Label accountNum;
+    @FXML Label payFrequency;
+    @FXML Label accountNumber;
     @FXML Label taxCoefficient;
     @FXML Label netSalary;
 
-    @FXML Button refreshBtn;
-    @FXML Button deletBtn;
+    @FXML Button refreshButton;
+    @FXML Button deleteButton;
     @FXML private TableView<Worker> workersTable;
     @FXML private TableColumn<Worker, String> workersTableColumn;
 
@@ -81,17 +81,17 @@ public class MechanicalDepartmentController {
                         age.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getAge());
                         city.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getCity());
                         address.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getAddress());
-                        telephoneNum.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getTelephoneNum());
+                        telephoneNumber.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getTelephoneNum());
                         email.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getEmail());
-                        idNum.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getIdNumber().toString());
+                        idNumber.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getIdNumber().toString());
                         startDate.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getStartDate().toString());
                         contractType.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getContractType());
 
                         if(workerDAO.getWorkersInfo(newValue.getNameSurname()).getEndDate()== null)endDate.setText("");
                         else endDate.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getEndDate().toString());
 
-                        payFreq.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getPayFreq());
-                        accountNum.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getAccountNum().toString());
+                        payFrequency.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getPayFreq());
+                        accountNumber.setText(workerDAO.getWorkersInfo(newValue.getNameSurname()).getAccountNum().toString());
                         taxCoefficient.setText(String.valueOf(workerDAO.getWorkersInfo(newValue.getNameSurname()).getTaxCoeficient()));
                         netSalary.setText(String.valueOf(workerDAO.getWorkersInfo(newValue.getNameSurname()).getNetSalary()));
                     }

@@ -40,8 +40,8 @@
                <bottom>
                   <HBox alignment="CENTER" prefHeight="46.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="refreshBtn" mnemonicParsing="false" onAction="#osvježiBtnKlik" text="REFRESH" />
-                        <Button fx:id="deletBtn" mnemonicParsing="false" onAction="#deleteBtnClicked" text="DELETE" />
+                        <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#osvježiBtnKlik" text="REFRESH" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteBtnClicked" text="DELETE" />
                      </children>
                   </HBox>
                </bottom>
@@ -95,7 +95,7 @@
                                     <Label fx:id="name" GridPane.columnIndex="1" />
                                     <Label fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <Label fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Label fx:id="telephoneNum" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label fx:id="telephoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <Label fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                     <Label text="Surname" GridPane.rowIndex="1">
                                        <font>
@@ -158,10 +158,10 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="idNum" GridPane.columnIndex="1" />
+                                    <Label fx:id="idNumber" GridPane.columnIndex="1" />
                                     <Label fx:id="endDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label fx:id="payFreq" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <Label fx:id="accountNum" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Label fx:id="payFrequency" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Label fx:id="accountNumber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <Label fx:id="taxCoefficient" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                     <Label text="Contract start date" GridPane.rowIndex="1">
                                        <font>

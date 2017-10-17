@@ -29,13 +29,13 @@ public class StageAddController {
     @FXML
     private TextField city;
     @FXML
-    private TextField telephoneNum;
+    private TextField telephoneNumber;
     @FXML
     private TextField email;
     @FXML
-    private ChoiceBox <String> deptBox;
+    private ChoiceBox <String> departmentBox;
     @FXML
-    private TextField idNum;
+    private TextField idNumber;
     @FXML
     private DatePicker startDate;
     @FXML
@@ -43,9 +43,9 @@ public class StageAddController {
     @FXML
     private DatePicker endDate;
     @FXML
-    private ChoiceBox <String> payFreq;
+    private ChoiceBox <String> payFrequency;
     @FXML
-    private TextField accountNum;
+    private TextField accountNumber;
     @FXML
     private TextField taxCoeficient;
     @FXML
@@ -56,11 +56,11 @@ public class StageAddController {
     private Label error2;
 
     @FXML
-    Button closeDugme;
+    Button closeButton;
     @FXML
-    Button okDugme;
+    Button okButton;
 
-    private final ObservableList<String> odjeljenjeLista = FXCollections.observableArrayList ("Mechanical", "Electrical");
+    private final ObservableList<String> departmentList = FXCollections.observableArrayList ("Mechanical", "Electrical");
     private final ObservableList<String> contractTypeList = FXCollections.observableArrayList ("Permanent", "Fixed-term");
     private final ObservableList<String> payFreqList = FXCollections.observableArrayList ("Weekly", "Monthly");
     private final PseudoClass errorClass = PseudoClass.getPseudoClass("error");
@@ -77,14 +77,14 @@ public class StageAddController {
     private final StageAddService stageAddService = new StageAddService();
 
     public void initialize() throws IOException {
-        deptBox.setItems(odjeljenjeLista);
+        departmentBox.setItems(departmentList);
         contractType.setItems(contractTypeList);
-        payFreq.setItems(payFreqList);
+        payFrequency.setItems(payFreqList);
 
         allControls= new Control[] {
                 name, surname, age, address, city,
-                telephoneNum, email, deptBox, idNum, startDate,
-                contractType, endDate, payFreq, accountNum, taxCoeficient,
+                telephoneNumber, email, departmentBox, idNumber, startDate,
+                contractType, endDate, payFrequency, accountNumber, taxCoeficient,
                 netSalary };
 
         //change date format
@@ -101,20 +101,20 @@ public class StageAddController {
             allControls[i].addEventHandler(ActionEvent.ACTION, e -> nextControl.requestFocus());
         }
 
-        //ENTER key pressed on a okDugme -> Save info
-        okDugme.setOnKeyPressed((KeyEvent event) ->{ switch (event.getCode()){
+        //ENTER key pressed on a okButton -> Save info
+        okButton.setOnKeyPressed((KeyEvent event) ->{ switch (event.getCode()){
             case ENTER:try {okDugmeKlik() /*method for saving data into database*/;}
             catch (IOException e) {e.printStackTrace();}}});
 
         //Validate fields for Long and Double variables
-        stageAddService.validateTextFieldLong(idNum, errorClass);
-        stageAddService.validateTextFieldLong(accountNum, errorClass);
+        stageAddService.validateTextFieldLong(idNumber, errorClass);
+        stageAddService.validateTextFieldLong(accountNumber, errorClass);
         stageAddService.validateTextFieldDouble(taxCoeficient, errorClass);
         stageAddService.validateTextFieldDouble(netSalary, errorClass);
 
         //Listen and check for an empty input
         for(Control c : allControls){
-            if(!c.equals(email)&& !c.equals(idNum) && !c.equals(accountNum)
+            if(!c.equals(email)&& !c.equals(idNumber) && !c.equals(accountNumber)
                     && !c.equals(taxCoeficient) && !c.equals(netSalary)){
                 emptyFields.add(c);
             }
@@ -171,9 +171,9 @@ public class StageAddController {
         //If required fields are valid save data
         if (count == controlList.size()) {
             daoStageAddImpl.insertIntoDatabase(name.getText().trim(), surname.getText().trim(), age.getValue(), address.getText().trim(),
-                city.getText().trim(), telephoneNum.getText().trim(), email.getText().trim(), deptBox.getValue(),
-                Long.parseLong(idNum.getText().trim()), startDate.getValue(), contractType.getValue(), endDate.getValue(),
-                payFreq.getValue(), Long.parseLong(accountNum.getText().trim()), Double.parseDouble(taxCoeficient.getText().trim()),
+                city.getText().trim(), telephoneNumber.getText().trim(), email.getText().trim(), departmentBox.getValue(),
+                Long.parseLong(idNumber.getText().trim()), startDate.getValue(), contractType.getValue(), endDate.getValue(),
+                payFrequency.getValue(), Long.parseLong(accountNumber.getText().trim()), Double.parseDouble(taxCoeficient.getText().trim()),
                 Double.parseDouble(netSalary.getText().trim()));
 
             main.closeStageAdd();

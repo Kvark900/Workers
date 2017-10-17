@@ -9,12 +9,12 @@
    <top>
       <ToolBar BorderPane.alignment="CENTER">
         <items>
-          <Button fx:id="počDugme" mnemonicParsing="false" onAction="#počDugmeKlik" text="HOME" />
+          <Button fx:id="homeButton" mnemonicParsing="false" onAction="#počDugmeKlik" text="HOME" />
         </items>
       </ToolBar>
    </top>
    <bottom>
-      <Button fx:id="dodajDugme" mnemonicParsing="false" onAction="#dodajDugmeKlik" prefHeight="40.0" prefWidth="192.0" text="ADD NEW WORKER" BorderPane.alignment="CENTER">
+      <Button fx:id="addButton" mnemonicParsing="false" onAction="#dodajDugmeKlik" prefHeight="40.0" prefWidth="192.0" text="ADD NEW WORKER" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" top="20.0" />
          </BorderPane.margin>

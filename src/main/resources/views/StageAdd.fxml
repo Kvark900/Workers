@@ -22,8 +22,8 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="64.0" prefWidth="521.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="okDugme" mnemonicParsing="false" onAction="#okDugmeKlik" prefWidth="80.0" text="OK" />
-            <Button fx:id="closeDugme" mnemonicParsing="false" onAction="#closeDugmeKlik" prefWidth="80.0" text="CANCEL" />
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#okDugmeKlik" prefWidth="80.0" text="OK" />
+            <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeDugmeKlik" prefWidth="80.0" text="CANCEL" />
          </children>
       </HBox>
    </bottom>
@@ -114,7 +114,7 @@
                                      <DatePicker fx:id="age" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                      <TextField fx:id="address" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <TextField fx:id="city" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField fx:id="telephoneNum" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="telephoneNumber" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <TextField fx:id="email" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                  </children>
                               </GridPane>
@@ -128,7 +128,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <ChoiceBox fx:id="deptBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                                    <ChoiceBox fx:id="departmentBox" prefWidth="150.0" GridPane.columnIndex="1" />
                                     <Label text="Department*">
                                        <font>
                                           <Font size="17.0" />
@@ -211,12 +211,12 @@
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                  </padding>
                               </Label>
-                              <TextField fx:id="idNum" prefHeight="31.0" prefWidth="369.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
+                              <TextField fx:id="idNumber" prefHeight="31.0" prefWidth="369.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
                               <DatePicker fx:id="startDate" style="-fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <ChoiceBox fx:id="contractType" prefHeight="31.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <DatePicker fx:id="endDate" style="-fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <ChoiceBox fx:id="payFreq" prefHeight="31.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <TextField fx:id="accountNum" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <ChoiceBox fx:id="payFrequency" prefHeight="31.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <TextField fx:id="accountNumber" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                               <TextField fx:id="taxCoeficient" prefHeight="31.0" prefWidth="103.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                               <TextField fx:id="netSalary" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                               <Label text="Contract type*" GridPane.rowIndex="2">
