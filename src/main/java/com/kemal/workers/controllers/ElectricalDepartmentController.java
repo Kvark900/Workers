@@ -23,24 +23,16 @@ public class ElectricalDepartmentController {
     @FXML private Label address;
     @FXML private Label telephoneNum;
     @FXML private Label email;
-    @FXML
-    private Label idNumber;
-    @FXML
-    private Label startDate;
-    @FXML
-    private Label contractType;
-    @FXML
-    private Label endDate;
-    @FXML
-    private Label payFrequency;
-    @FXML
-    private Label accountNumber;
-    @FXML
-    private Label taxCoefficient;
-    @FXML
-    private Label netSalary;
-    @FXML Button refreshButton;
-    @FXML Button deletButton;
+    @FXML private Label idNumber;
+    @FXML private Label startDate;
+    @FXML private Label contractType;
+    @FXML private Label endDate;
+    @FXML private Label payFrequency;
+    @FXML private Label accountNumber;
+    @FXML private Label taxCoefficient;
+    @FXML private Label netSalary;
+    @FXML private Button refreshButton;
+    @FXML private Button deleteButton;
     @FXML private TableView<Worker> workersTable;
     @FXML private TableColumn<Worker, String> workersTableColumn;
 

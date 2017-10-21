@@ -56,9 +56,9 @@ public class StageAddController {
     private Label error2;
 
     @FXML
-    Button closeButton;
+    private Button closeButton;
     @FXML
-    Button okButton;
+    private Button okButton;
 
     private final ObservableList<String> departmentList = FXCollections.observableArrayList ("Mechanical", "Electrical");
     private final ObservableList<String> contractTypeList = FXCollections.observableArrayList ("Permanent", "Fixed-term");

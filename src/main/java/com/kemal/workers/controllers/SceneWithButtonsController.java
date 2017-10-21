@@ -8,10 +8,10 @@ import com.kemal.workers.Main;
 import java.io.IOException;
 
 public class SceneWithButtonsController {
-    @FXML Button mechanicalDepartmentButton;
-    @FXML Button electricalDepartmentButton;
-    @FXML ImageView mechanical;
-    @FXML ImageView electrical;
+    @FXML private Button mechanicalDepartmentButton;
+    @FXML private Button electricalDepartmentButton;
+    @FXML private ImageView mechanical;
+    @FXML private ImageView electrical;
 
     //Show workers from Mechanical Department
     @FXML

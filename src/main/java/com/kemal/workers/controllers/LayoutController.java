@@ -7,8 +7,8 @@ import com.kemal.workers.Main;
 import java.io.IOException;
 
 public class LayoutController {
-    @FXML Button homeButton;
-    @FXML Button addButton;
+    @FXML private Button homeButton;
+    @FXML private Button addButton;
 
     //Go home when button is clikced
     @FXML
