@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Radnici:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Radnici_jar</output-path>
-    <root id="archive" name="Radnici.jar">
-      <element id="module-output" name="Workers" />
-      <element id="extracted-dir" path="$JDBC_Driver$" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
