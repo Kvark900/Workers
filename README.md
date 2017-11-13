@@ -9,6 +9,7 @@ GUI application for CRUD operations on workers in a database
 
 ### Dependencies:
 -H2 
+-Hibernate
 
 ## How to run
 
