@@ -1,8 +1,12 @@
 package com.kemal.workers.controllers;
 
-import com.kemal.workers.DAO.AddWorkerDAOImpl;
 import com.kemal.workers.Main;
-import com.kemal.workers.Service.StageAddService;
+import com.kemal.workers.dao.WorkerDao;
+import com.kemal.workers.dao.WorkerDaoFactory;
+import com.kemal.workers.model.ContactInformation;
+import com.kemal.workers.model.EmploymentInformation;
+import com.kemal.workers.model.Worker;
+import com.kemal.workers.service.StageAddService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
@@ -69,12 +73,10 @@ public class StageAddController {
 
     //All fields
     private Control[] allControls;
-
     // Fields for which input is necessary
     private final List<Control> emptyFields = new ArrayList<>();
-
-
     private final StageAddService stageAddService = new StageAddService();
+
 
     public void initialize() throws IOException {
         departmentBox.setItems(departmentList);
@@ -95,15 +97,16 @@ public class StageAddController {
         //Disable endDate when contract type is permanent
         stageAddService.disableEndDate(endDate, contractType);
 
-        //enterKeyPressed -> focus on next item
+        //enterKeyPressed -> focus on the next item
         for (int i = 0 ; i < allControls.length-1; i++) {
             Control nextControl = allControls[i+1];
             allControls[i].addEventHandler(ActionEvent.ACTION, e -> nextControl.requestFocus());
         }
 
-        //ENTER key pressed on a okButton -> Save info
+        //ENTER key pressed on okButton -> Save info
         okButton.setOnKeyPressed((KeyEvent event) ->{ switch (event.getCode()){
-            case ENTER:try {okDugmeKlik() /*method for saving data into database*/;}
+            case ENTER:try {
+                okButtonClicked() /*method for saving data into database*/;}
             catch (IOException e) {e.printStackTrace();}}});
 
         //Validate fields for Long and Double variables
@@ -131,14 +134,14 @@ public class StageAddController {
                 stageAddService.validateNodeForEmptyByPredicate((ChoiceBox) c,
                         errorClass2, box -> box.getValue() == null);
         }
-    }
+    }// end of initialize
 
     //Close Stage
-    @FXML private void closeDugmeKlik() throws IOException {main.closeStageAdd();}
+    @FXML private void closeButtonClicked() throws IOException {main.closeStageAdd();}
 
     //Submit entered information - OK button pressed
-    @FXML private void okDugmeKlik() throws IOException{
-        AddWorkerDAOImpl daoStageAddImpl = new AddWorkerDAOImpl();
+    @FXML private void okButtonClicked() throws IOException{
+        WorkerDao workerDao = WorkerDaoFactory.getWorkerDAO();
         List<Control> controlList = new ArrayList<>();
         int count=0;
 
@@ -168,13 +171,35 @@ public class StageAddController {
             }
         }
 
-        //If required fields are valid save data
+        //If required fields are valid, save data
         if (count == controlList.size()) {
-            daoStageAddImpl.insertIntoDatabase(name.getText().trim(), surname.getText().trim(), age.getValue(), address.getText().trim(),
-                city.getText().trim(), telephoneNumber.getText().trim(), email.getText().trim(), departmentBox.getValue(),
-                Long.parseLong(idNumber.getText().trim()), startDate.getValue(), contractType.getValue(), endDate.getValue(),
-                payFrequency.getValue(), Long.parseLong(accountNumber.getText().trim()), Double.parseDouble(taxCoeficient.getText().trim()),
-                Double.parseDouble(netSalary.getText().trim()));
+            Worker worker = new Worker();
+            worker.setName(name.getText().trim());
+            worker.setSurname(surname.getText().trim());
+            worker.setAge(age.getValue());
+
+
+            ContactInformation contactInformation = new ContactInformation();
+            contactInformation.setAddress(address.getText().trim());
+            contactInformation.setCity(city.getText().trim());
+            contactInformation.setTelephoneNum(telephoneNumber.getText().trim());
+            contactInformation.setEmail(email.getText().trim());
+            worker.setContactInformation(contactInformation);
+
+            EmploymentInformation employmentInformation = new EmploymentInformation();
+            employmentInformation.setDepartment(departmentBox.getValue());
+            employmentInformation.setIdNumber(Long.parseLong(idNumber.getText().trim()));
+            employmentInformation.setStartDate(startDate.getValue());
+            employmentInformation.setContractType(contractType.getValue());
+            employmentInformation.setEndDate(endDate.getValue());
+            employmentInformation.setPayFreq(payFrequency.getValue());
+            employmentInformation.setAccountNum(Long.parseLong(accountNumber.getText().trim()));
+            employmentInformation.setTaxCoeficient(Double.parseDouble(taxCoeficient.getText().trim()));
+            employmentInformation.setNetSalary(Double.parseDouble(netSalary.getText().trim()));
+            worker.setEmploymentInformation(employmentInformation);
+
+            workerDao.saveWorker(worker);
+
 
             main.closeStageAdd();
         }
