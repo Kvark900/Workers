@@ -41,8 +41,8 @@
                <bottom>
                   <HBox alignment="CENTER" prefHeight="33.0" prefWidth="168.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#osvježiBtnKlik" prefHeight="31.0" prefWidth="84.0" text="REFRESH" />
-                        <Button fx:id="deletButton" mnemonicParsing="false" onAction="#obrišiBtnKlik" prefHeight="31.0" prefWidth="75.0" text="DELETE" />
+                        <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshButtonClicked" prefHeight="31.0" prefWidth="84.0" text="REFRESH" />
+                        <Button fx:id="deletButton" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="31.0" prefWidth="75.0" text="DELETE" />
                      </children>
                      <padding>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />

@@ -37,7 +37,7 @@ public class MechanicalDepartmentController {
     @FXML private TableView<Worker> workersTable;
     @FXML private TableColumn<Worker, String> workersTableColumn;
 
-    private WorkerDao workerDao = WorkerDaoFactory.getWorkerDAO();
+    private WorkerDao workerDao = WorkerDaoFactory.getWorkerDao();
     private final ObservableList<Worker> workersList = FXCollections.observableArrayList();
 
     //initialize method
@@ -49,7 +49,7 @@ public class MechanicalDepartmentController {
 
     //Refresh the table when button is clicked
     @FXML
-    public void osvježiBtnKlik(){
+    public void refreshButtonClicked(){
         workersList.removeAll(workersList);
         populateTable();
     }
@@ -63,7 +63,7 @@ public class MechanicalDepartmentController {
 
     //Delete a worker
     @FXML
-    private void deleteBtnClicked(){
+    private void deleteButtonClicked(){
         Worker selectedItems = workersTable.getSelectionModel().getSelectedItem();
         workersTable.getItems().remove(selectedItems);
         workerDao.deleteSelectedWorker(selectedItems, "Mechanical");

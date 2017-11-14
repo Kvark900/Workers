@@ -89,7 +89,7 @@ public class StageAddController {
                 contractType, endDate, payFrequency, accountNumber, taxCoeficient,
                 netSalary };
 
-        //change date format
+        //Change date format
         stageAddService.changeDateFormat(age);
         stageAddService.changeDateFormat(startDate);
         stageAddService.changeDateFormat(endDate);
@@ -134,14 +134,14 @@ public class StageAddController {
                 stageAddService.validateNodeForEmptyByPredicate((ChoiceBox) c,
                         errorClass2, box -> box.getValue() == null);
         }
-    }// end of initialize
+    }// End of initialize
 
     //Close Stage
     @FXML private void closeButtonClicked() throws IOException {main.closeStageAdd();}
 
     //Submit entered information - OK button pressed
     @FXML private void okButtonClicked() throws IOException{
-        WorkerDao workerDao = WorkerDaoFactory.getWorkerDAO();
+        WorkerDao workerDao = WorkerDaoFactory.getWorkerDao();
         List<Control> controlList = new ArrayList<>();
         int count=0;
 

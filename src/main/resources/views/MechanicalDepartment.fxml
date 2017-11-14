@@ -40,8 +40,8 @@
                <bottom>
                   <HBox alignment="CENTER" prefHeight="46.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#osvježiBtnKlik" text="REFRESH" />
-                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteBtnClicked" text="DELETE" />
+                        <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refreshButtonClicked" text="REFRESH" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButtonClicked" text="DELETE" />
                      </children>
                   </HBox>
                </bottom>

@@ -15,12 +15,12 @@ public class SceneWithButtonsController {
 
     //Show workers from Mechanical Department
     @FXML
-    private void mehDugmeKlik () throws IOException {
+    private void mechanicalDepartmentButtonClicked() throws IOException {
         Main.showMechanicalDepartment();}
 
     //Show workers from Electrical Department
     @FXML
-    private  void elDugmeKlik () throws IOException {
+    private  void electricalDepartmentButtonClicked() throws IOException {
         Main.showElectricalDepartment();}
 
 }

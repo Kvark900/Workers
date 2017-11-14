@@ -67,7 +67,7 @@ public class Main extends Application {
         BorderPane addWorkerPane;
         addWorkerPane = loader.load();
         stageAdd = new Stage();
-        stageAdd.setTitle("Dodaj Novog Radnika");
+        stageAdd.setTitle("Add New Worker");
         stageAdd.resizableProperty().setValue(Boolean.FALSE);
         Scene scene = new Scene(addWorkerPane);
         scene.getStylesheets().addAll(Main.class.getResource("/css/text-field-red-border.css").toExternalForm(),
