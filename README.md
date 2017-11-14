@@ -13,6 +13,8 @@ GUI application for CRUD operations on workers in a database
 -Hibernate
 
 
+-Hibernate
+
 ## How to run
 
 Run `mvn install` in root directory
