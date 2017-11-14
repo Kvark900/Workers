@@ -8,7 +8,10 @@ GUI application for CRUD operations on workers in a database
 -Maven
 
 ### Dependencies:
--H2 
+-H2
+
+-Hibernate
+
 
 ## How to run
 

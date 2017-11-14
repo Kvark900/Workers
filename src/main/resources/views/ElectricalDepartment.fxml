@@ -60,8 +60,8 @@
                                  <children>
                                     <GridPane layoutX="-9.0" prefHeight="332.0" prefWidth="422.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="70.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="404.0" minWidth="10.0" prefWidth="403.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="84.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="404.0" minWidth="10.0" prefWidth="390.0" />
                                       </columnConstraints>
                                       <rowConstraints>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -73,22 +73,22 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Label text="Ime:">
+                                          <Label text="Name:">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Adresa:" GridPane.rowIndex="4">
+                                          <Label text="Address:" GridPane.rowIndex="4">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Grad:" GridPane.rowIndex="3">
+                                          <Label text="City:" GridPane.rowIndex="3">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Telefon:" GridPane.rowIndex="5">
+                                          <Label text="Telephone:" GridPane.rowIndex="5">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
@@ -103,13 +103,13 @@
                                           <Label fx:id="address" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                           <Label fx:id="telephoneNum" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                           <Label fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                          <Label text="Prezime:" GridPane.rowIndex="1">
+                                          <Label text="Surname:" GridPane.rowIndex="1">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
                                           <Label fx:id="surname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Label text="Godine:" GridPane.rowIndex="2">
+                                          <Label text="Age:" GridPane.rowIndex="2">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
@@ -143,27 +143,27 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                        </rowConstraints>
                                        <children>
-                                          <Label text="ID Number (JMBG)">
+                                          <Label text="ID Number (JMBG):">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Pay frequency" GridPane.rowIndex="4">
+                                          <Label text="Pay frequency:" GridPane.rowIndex="4">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Contract end date" GridPane.rowIndex="3">
+                                          <Label text="Contract end date:" GridPane.rowIndex="3">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Transaction account" GridPane.rowIndex="5">
+                                          <Label text="Transaction account:" GridPane.rowIndex="5">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
-                                          <Label text="Tax coeficient" GridPane.rowIndex="6">
+                                          <Label text="Tax coeficient:" GridPane.rowIndex="6">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
@@ -173,19 +173,19 @@
                                           <Label fx:id="payFrequency" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                           <Label fx:id="accountNumber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                           <Label fx:id="taxCoefficient" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                          <Label text="Contract start date" GridPane.rowIndex="1">
+                                          <Label text="Contract start date:" GridPane.rowIndex="1">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
                                           <Label fx:id="startDate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                          <Label text="Contract type" GridPane.rowIndex="2">
+                                          <Label text="Contract type:" GridPane.rowIndex="2">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
                                           </Label>
                                           <Label fx:id="contractType" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                          <Label text="Net salary" GridPane.rowIndex="7">
+                                          <Label text="Net salary:" GridPane.rowIndex="7">
                                              <font>
                                                 <Font name="System Bold" size="15.0" />
                                              </font>
