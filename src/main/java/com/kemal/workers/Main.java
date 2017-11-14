@@ -70,8 +70,7 @@ public class Main extends Application {
         stageAdd.setTitle("Add New Worker");
         stageAdd.resizableProperty().setValue(Boolean.FALSE);
         Scene scene = new Scene(addWorkerPane);
-        scene.getStylesheets().addAll(Main.class.getResource("/css/text-field-red-border.css").toExternalForm(),
-                Main.class.getResource("/css/date-picker-red-border.css").toExternalForm());
+        scene.getStylesheets().addAll(Main.class.getResource("/css/redBorder.css").toExternalForm());
         stageAdd.setScene(scene);
         stageAdd.initModality(Modality.WINDOW_MODAL);
         stageAdd.initOwner(stage1);

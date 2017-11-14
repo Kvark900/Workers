@@ -45,7 +45,7 @@ public class ElectricalDepartmentController {
         rowSelected();
     }
 
-    //Refresh the table when button is clicked
+    //Refresh the table when the button is clicked
     @FXML
     public void refreshButtonClicked() {
         workersList.removeAll(workersList);
@@ -96,6 +96,7 @@ public class ElectricalDepartmentController {
                     }
                 });
     }
+
 
 }
 
