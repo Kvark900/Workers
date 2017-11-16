@@ -45,11 +45,26 @@ public class WorkerDaoImpl implements WorkerDao {
     }
 
     //Get Worker (allInfo)
-    public Worker getWorkersInfo(String nameSurname) {
+    public Worker getWorkersInfoByNameSurname(String nameSurname) {
         Worker worker = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
             org.hibernate.query.Query query= session.createQuery("from Worker where name =? and surname = ?");
+            query.setParameter(0, nameSurname.split(" ")[0]);
+            query.setParameter(1, nameSurname.split(" ")[1]);
+            worker = (Worker) query.uniqueResult();
+
+            session.getTransaction().commit();
+        }catch (Exception e) {e.printStackTrace();}
+
+        return worker;
+    }
+
+    public Worker getWorkersIdByNameSurname(String nameSurname) {
+        Worker worker = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+            session.beginTransaction();
+            org.hibernate.query.Query query= session.createQuery("select id from Worker where name =? and surname = ?");
             query.setParameter(0, nameSurname.split(" ")[0]);
             query.setParameter(1, nameSurname.split(" ")[1]);
             worker = (Worker) query.uniqueResult();
@@ -71,4 +86,20 @@ public class WorkerDaoImpl implements WorkerDao {
         }catch (Exception e) {e.printStackTrace();}
 
     }
+
+    @Override
+    public void updateWorker(Worker worker) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+            session.beginTransaction();
+
+            session.update(worker);
+            System.out.println("Worker has been updated!!");
+
+            session.getTransaction().commit();
+        }catch (Exception e) {e.printStackTrace();}
+
+
+    }
+
+
 }

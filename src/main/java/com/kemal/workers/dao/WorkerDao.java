@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 public interface WorkerDao {
     ObservableList<Worker> getWorkersNameSurname(String department);
     void deleteSelectedWorker (Worker worker, String department);
-    Worker getWorkersInfo(String nameSurname);
+    Worker getWorkersInfoByNameSurname(String nameSurname);
     void saveWorker(Worker worker);
-
+    void updateWorker(Worker worker);
 }

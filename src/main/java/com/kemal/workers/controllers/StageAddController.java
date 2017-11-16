@@ -14,6 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,7 +23,7 @@ import java.util.List;
 
 public class StageAddController {
 
-    private final Main main = new Main();
+    private Main main = new Main();
     @FXML
     private TextField name;
     @FXML
@@ -73,17 +75,23 @@ public class StageAddController {
 
     //All fields
     private Control[] allControls;
+
     // Fields for which input is necessary
     private final List<Control> emptyFields = new ArrayList<>();
     private final StageAddService stageAddService = new StageAddService();
+
+    private Boolean isInEditMode = false;
+    private static Long id;
+    @FXML
+    private BorderPane rootPane;
+
 
 
     public void initialize() throws IOException {
         departmentBox.setItems(departmentList);
         contractType.setItems(contractTypeList);
         payFrequency.setItems(payFreqList);
-
-        allControls= new Control[] {
+        allControls = new Control[] {
                 name, surname, age, address, city,
                 telephoneNumber, email, departmentBox, idNumber, startDate,
                 contractType, endDate, payFrequency, accountNumber, taxCoeficient,
@@ -137,23 +145,26 @@ public class StageAddController {
     }// End of initialize
 
     //Close Stage
-    @FXML private void closeButtonClicked() throws IOException {main.closeStageAdd();}
+    @FXML private void closeButtonClicked(){
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.close();
+    }
 
     //Submit entered information - OK button pressed
     @FXML private void okButtonClicked() throws IOException{
         WorkerDao workerDao = WorkerDaoFactory.getWorkerDao();
-        List<Control> controlList = new ArrayList<>();
+        List<Control> requiredFieleds = new ArrayList<>();
         int count=0;
 
         // Getting required fields
         for(Control c : allControls){
             if(!c.equals(email) && !c.equals(endDate)){
-                controlList.add(c);
+                requiredFieleds.add(c);
             }
         }
 
         //Check if all required fields are valid
-        for (Control c : controlList) {
+        for (Control c : requiredFieleds) {
             if (c instanceof TextField) {
                 if (!stageAddService.validateField((TextField)c, field-> field.getText().trim().isEmpty()))
                     count++;
@@ -172,12 +183,12 @@ public class StageAddController {
         }
 
         //If required fields are valid, save data
-        if (count == controlList.size()) {
+        if (count == requiredFieleds.size()) {
             Worker worker = new Worker();
+
             worker.setName(name.getText().trim());
             worker.setSurname(surname.getText().trim());
             worker.setAge(age.getValue());
-
 
             ContactInformation contactInformation = new ContactInformation();
             contactInformation.setAddress(address.getText().trim());
@@ -198,16 +209,49 @@ public class StageAddController {
             employmentInformation.setNetSalary(Double.parseDouble(netSalary.getText().trim()));
             worker.setEmploymentInformation(employmentInformation);
 
-            workerDao.saveWorker(worker);
+            if(isInEditMode){
+                worker.setId(id);
+                workerDao.updateWorker(worker);
+            }
+            else {workerDao.saveWorker(worker);}
 
+            closeButtonClicked();
 
-            main.closeStageAdd();
         }
         else {error1.setText("Fill in all red fields");
             error2.setText("Fill in all red fields");
-
         }
 
     }
+
+    public void showEditWorkerOldInformation(Worker worker) {
+        WorkerDao workerDao = WorkerDaoFactory.getWorkerDao();
+        Worker worker1 = workerDao.getWorkersInfoByNameSurname(worker.getNameSurname());
+
+        id = worker1.getId();
+
+        name.setText(worker1.getName());
+        surname.setText(worker1.getSurname());
+        age.setValue(worker1.getAge());
+        address.setText(worker1.getContactInformation().getAddress());
+        city.setText(worker1.getContactInformation().getCity());
+        telephoneNumber.setText(worker1.getContactInformation().getTelephoneNum());
+        email.setText(worker1.getContactInformation().getEmail());
+        departmentBox.setValue(worker1.getEmploymentInformation().getDepartment());
+        idNumber.setText(worker1.getEmploymentInformation().getIdNumber().toString());
+        startDate.setValue(worker1.getEmploymentInformation().getStartDate());
+        contractType.setValue(worker1.getEmploymentInformation().getContractType());
+        endDate.setValue(worker1.getEmploymentInformation().getEndDate());
+        payFrequency.setValue(worker1.getEmploymentInformation().getPayFreq());
+        accountNumber.setText(worker1.getEmploymentInformation().getAccountNum().toString());
+        taxCoeficient.setText(String.valueOf(worker1.getEmploymentInformation().getTaxCoeficient()));
+        netSalary.setText(String.valueOf(worker1.getEmploymentInformation().getNetSalary()));
+
+        isInEditMode = true;
+    }
+
+
+
+
 
 }
