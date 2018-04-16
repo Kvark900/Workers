@@ -13,8 +13,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.IOException;
-
 public class ElectricalDepartmentController {
 
     @FXML private Label name;
@@ -42,7 +40,7 @@ public class ElectricalDepartmentController {
     private final ObservableList<Worker> workersList = FXCollections.observableArrayList();
 
     //initialize method
-    public void initialize() throws IOException {
+    public void initialize() {
         workersTableColumn.setCellValueFactory(new PropertyValueFactory<>("nameSurname"));
         rowSelected();
     }
@@ -70,6 +68,7 @@ public class ElectricalDepartmentController {
     }
 
     //Show worker's information when row is selected
+    @SuppressWarnings("Duplicates")
     @FXML
     private void rowSelected() {
 
@@ -100,9 +99,8 @@ public class ElectricalDepartmentController {
     }
     @FXML
     public void editButtonClicked(){
-        DepartmentsService departmentsService = new DepartmentsService();
         try {
-            departmentsService.editButtonClicked(workersTable);
+            DepartmentsService.editButtonClicked(workersTable);
         } catch (Exception e) {
             e.printStackTrace();
         }

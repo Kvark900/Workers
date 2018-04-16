@@ -15,10 +15,10 @@ import java.io.IOException;
  */
 public class DepartmentsService {
 
-    public void editButtonClicked(TableView<Worker> workerTableView) throws IOException{
+    public static void editButtonClicked(TableView<Worker> workerTableView) throws IOException{
         Worker workerSelectedForEdit = workerTableView.getSelectionModel().getSelectedItem();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/StageAdd.fxml"));
+        FXMLLoader loader = new FXMLLoader(DepartmentsService.class.getResource("/views/StageAdd.fxml"));
         Parent parent = loader.load();
 
         StageAddController controller = loader.getController();

@@ -74,6 +74,7 @@ public class MechanicalDepartmentController {
 
     //Show worker's information when row is selected
     @FXML
+    @SuppressWarnings("Duplicates")
     private void rowSelected() {
         workersTable.getSelectionModel().selectedItemProperty().
                 addListener((observable, oldValue, newValue) -> {
