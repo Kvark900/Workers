@@ -1,14 +1,14 @@
-.text-field:error {
+.text-field:textFieldRedBorder {
     -fx-text-box-border: red ;
     -fx-focus-color: red ;
 }
 
-.date-picker:error1 {
+.date-picker:datePickerRedBorder {
     -fx-border-color: red ;
     -fx-focus-color: #ac4402;
 }
 
-.choice-box:error2 {
+.choice-box:choiceBoxRedBorder {
     -fx-border-color: red ;
     -fx-focus-color: #ac4402;
 }
