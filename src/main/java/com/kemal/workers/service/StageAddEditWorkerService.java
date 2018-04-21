@@ -21,7 +21,7 @@ import java.util.function.Predicate;
 /**
  * Created by Keno&Kemo on 06.08.2017..
  */
-public class StageAddService {
+public class StageAddEditWorkerService {
 
     //Method to change date format in JavaFX DatePicker
     public static void changeDateFormat(DatePicker datePicker){
@@ -50,13 +50,14 @@ public class StageAddService {
                 (ObservableValue<? extends String> observable, String oldValue, String newValue) ->
                 {if (Objects.equals(newValue, "Permanent")) {
                     endDate.setDisable(true);
+
                 }
                 else endDate.setDisable(false);
                 });
     }
 
     //Listen and validate for empty field and change border color
-    public static  <T extends Node> void validateNodeForEmptyByPredicate(T node, PseudoClass errorClass, Predicate<T> predicate) {
+    public static  <T extends Node> void isEmptyFieldByPredicate(T node, PseudoClass errorClass, Predicate<T> predicate) {
         node.focusedProperty().addListener((arg0, oldValue, newValue) -> {
             if (!newValue) {
                 node.pseudoClassStateChanged(errorClass, predicate.test(node));
@@ -66,13 +67,11 @@ public class StageAddService {
 
     //Validate fields
     public static  <T extends Node> boolean validateField(T node, Predicate<T> predicate){
-        boolean b;
-        b = (predicate.test(node));
-        return b;
+        return (predicate.test(node));
     }
 
     //Listen and validate for Double
-    public static void validateTextFieldDouble (TextField textField, PseudoClass errorClass) {
+    public static boolean isParsableIntoDouble(TextField textField, PseudoClass noDoubleError) {
         AtomicBoolean isParsable = new AtomicBoolean(false);
         textField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
             try {
@@ -84,15 +83,16 @@ public class StageAddService {
             }
 
             if (!newValue) { //when focus lost
-                if (textField.getText().trim().isEmpty() || !isParsable.get()) {
-                    textField.pseudoClassStateChanged(errorClass, true);
-                } else textField.pseudoClassStateChanged(errorClass, false);
+                if (!isParsable.get()) {
+                    textField.pseudoClassStateChanged(noDoubleError, true);
+                } else textField.pseudoClassStateChanged(noDoubleError, false);
             }
         });
+        return isParsable.get();
     }
 
     //Listen and validate for Long
-    public static void validateTextFieldLong (TextField textField, PseudoClass errorClass) {
+    public static boolean isParsableIntoLong(TextField textField, PseudoClass errorClass) {
         AtomicBoolean isParsable = new AtomicBoolean(false);
         textField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
             try {
@@ -109,6 +109,7 @@ public class StageAddService {
                 } else textField.pseudoClassStateChanged(errorClass, false);
             }
         });
+        return  isParsable.get();
     }
 
     public static Worker createWorker(String name, String surname, LocalDate age, String address,
