@@ -27,7 +27,7 @@ public class Main extends Application {
 
     private static void showLayoutWithHomeAndAdd() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/views/Layout1.fxml"));
+        loader.setLocation(Main.class.getResource("/views/Layout.fxml"));
         layoutWithHomeAndAdd = loader.load();
         Scene scena1 = new Scene(layoutWithHomeAndAdd);
         mainStage.setScene(scena1);
@@ -36,7 +36,7 @@ public class Main extends Application {
 
     public static void showSceneWithButtons() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/views/SceneBtn.fxml"));
+        loader.setLocation(Main.class.getResource("/views/SceneWithButtons.fxml"));
         BorderPane rasporedSaDugmadima = loader.load();
         layoutWithHomeAndAdd.setCenter(rasporedSaDugmadima);
     }
@@ -61,7 +61,7 @@ public class Main extends Application {
 
     public static void showStageAdd() throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/views/StageAdd.fxml"));
+        loader.setLocation(Main.class.getResource("/views/StageAddEditWorker.fxml"));
         BorderPane addWorkerPane = loader.load();
         Stage stageAdd = new Stage();
         stageAdd.setTitle("Add New Worker");

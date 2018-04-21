@@ -1,6 +1,6 @@
 package com.kemal.workers.service;
 
-import com.kemal.workers.controllers.StageAddController;
+import com.kemal.workers.controllers.StageAddEditWorkerController;
 import com.kemal.workers.model.Worker;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,10 +18,10 @@ public class DepartmentsService {
     public static void editButtonClicked(TableView<Worker> workerTableView) throws IOException{
         Worker workerSelectedForEdit = workerTableView.getSelectionModel().getSelectedItem();
 
-        FXMLLoader loader = new FXMLLoader(DepartmentsService.class.getResource("/views/StageAdd.fxml"));
+        FXMLLoader loader = new FXMLLoader(DepartmentsService.class.getResource("/views/StageAddEditWorker.fxml"));
         Parent parent = loader.load();
 
-        StageAddController controller = loader.getController();
+        StageAddEditWorkerController controller = loader.getController();
         controller.showEditWorkerOldInformation(workerSelectedForEdit);
 
         Stage stage = new Stage();
