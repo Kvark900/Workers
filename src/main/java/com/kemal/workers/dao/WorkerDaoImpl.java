@@ -26,7 +26,9 @@ public class WorkerDaoImpl implements WorkerDao {
 
            session.getTransaction().commit();
        }
-       catch (Exception e) {e.printStackTrace();}
+       catch (Exception e) {
+           e.printStackTrace();
+       }
 
        return nameSurname;
     }
@@ -45,7 +47,9 @@ public class WorkerDaoImpl implements WorkerDao {
 
             session.getTransaction().commit();
         }
-        catch (Exception e) {e.printStackTrace();}
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //Get Worker (allInfo)
@@ -60,7 +64,9 @@ public class WorkerDaoImpl implements WorkerDao {
 
             session.getTransaction().commit();
         }
-        catch (Exception e) {e.printStackTrace();}
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return worker;
     }
@@ -76,7 +82,9 @@ public class WorkerDaoImpl implements WorkerDao {
 
             session.getTransaction().commit();
         }
-        catch (Exception e) {e.printStackTrace();}
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return worker;
     }
@@ -90,7 +98,9 @@ public class WorkerDaoImpl implements WorkerDao {
 
             session.getTransaction().commit();
         }
-        catch (Exception e) {e.printStackTrace();}
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -103,7 +113,9 @@ public class WorkerDaoImpl implements WorkerDao {
 
             session.getTransaction().commit();
         }
-        catch (Exception e) {e.printStackTrace();}
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
