@@ -25,23 +25,27 @@ public class WorkerDaoImpl implements WorkerDao {
            }
 
            session.getTransaction().commit();
-       }catch (Exception e) {e.printStackTrace();}
+       }
+       catch (Exception e) {e.printStackTrace();}
 
-        return nameSurname;
+       return nameSurname;
     }
 
     //Delete selected worker
     public void deleteSelectedWorker (Worker worker, String department){
         try(Session session = HibernateUtil.getSessionFactory().openSession()){
             session.beginTransaction();
-            org.hibernate.query.Query query= session.createQuery("delete from Worker where employmentInformation.department = ? and name =? and surname = ?");
+            org.hibernate.query.Query query= session.createQuery("delete from Worker where " +
+                                                                    "employmentInformation.department = ? and name =? " +
+                                                                    "and surname = ?");
             query.setParameter(0, department);
             query.setParameter(1, worker.getNameSurname().split(" ")[0]);
             query.setParameter(2, worker.getNameSurname().split(" ")[1]);
             query.executeUpdate();
 
             session.getTransaction().commit();
-        }catch (Exception e) {e.printStackTrace();}
+        }
+        catch (Exception e) {e.printStackTrace();}
     }
 
     //Get Worker (allInfo)
@@ -55,7 +59,8 @@ public class WorkerDaoImpl implements WorkerDao {
             worker = (Worker) query.uniqueResult();
 
             session.getTransaction().commit();
-        }catch (Exception e) {e.printStackTrace();}
+        }
+        catch (Exception e) {e.printStackTrace();}
 
         return worker;
     }
@@ -70,7 +75,8 @@ public class WorkerDaoImpl implements WorkerDao {
             worker = (Worker) query.uniqueResult();
 
             session.getTransaction().commit();
-        }catch (Exception e) {e.printStackTrace();}
+        }
+        catch (Exception e) {e.printStackTrace();}
 
         return worker;
     }
@@ -83,8 +89,8 @@ public class WorkerDaoImpl implements WorkerDao {
             System.out.println("Worker has been saved!!");
 
             session.getTransaction().commit();
-        }catch (Exception e) {e.printStackTrace();}
-
+        }
+        catch (Exception e) {e.printStackTrace();}
     }
 
     @Override
@@ -96,9 +102,8 @@ public class WorkerDaoImpl implements WorkerDao {
             System.out.println("Worker has been updated!!");
 
             session.getTransaction().commit();
-        }catch (Exception e) {e.printStackTrace();}
-
-
+        }
+        catch (Exception e) {e.printStackTrace();}
     }
 
 
