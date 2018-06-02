@@ -17,8 +17,6 @@ public class ContactInformation {
     public ContactInformation() {
     }
 
-
-
     public String getAddress() {
         return address;
     }
