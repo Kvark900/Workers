@@ -59,28 +59,24 @@ public class MechanicalDepartmentController {
     private WorkerDao workerDao = WorkerDaoFactory.getWorkerDao();
     private final ObservableList<Worker> workersList = FXCollections.observableArrayList();
 
-    //initialize method
     @FXML
     public void initialize() {
         workersTableColumn.setCellValueFactory(new PropertyValueFactory<>("nameSurname"));
         rowSelected();
     }
 
-    //Refresh the table when button is clicked
     @FXML
     public void refreshButtonClicked() {
         workersList.removeAll(workersList);
         populateTable();
     }
 
-    //Populate the table
     @FXML
     public void populateTable() {
-        for (Worker worker : workerDao.getWorkersNameSurname("Mechanical")) workersList.addAll(worker);
+        for (Worker worker : workerDao.getWorkersWithNameSurname("Mechanical")) workersList.addAll(worker);
         workersTable.setItems(workersList);
     }
 
-    //Delete a worker
     @FXML
     private void deleteButtonClicked() {
         Worker selectedItems = workersTable.getSelectionModel().getSelectedItem();
@@ -88,7 +84,6 @@ public class MechanicalDepartmentController {
         workerDao.deleteSelectedWorker(selectedItems, "Mechanical");
     }
 
-    //Show worker's information when row is selected
     @FXML
     private void rowSelected() {
         DepartmentsService.showWorkersInformationWhenRowIsSelected(workersTable, name, surname, age, city, address,

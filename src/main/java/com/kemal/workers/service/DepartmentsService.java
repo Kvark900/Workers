@@ -44,24 +44,24 @@ public class DepartmentsService {
         workersTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 
             if (newValue != null) {
-                name.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getName());
-                surname.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getSurname());
-                age.setText(String.valueOf(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getAge()));
-                city.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getContactInformation().getCity());
-                address.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getContactInformation().getAddress());
-                telephoneNumber.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getContactInformation().getTelephoneNum());
-                email.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getContactInformation().getEmail());
-                idNumber.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getIdNumber().toString());
-                startDate.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getStartDate().toString());
-                contractType.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getContractType());
+                name.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getName());
+                surname.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getSurname());
+                age.setText(String.valueOf(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getAge()));
+                city.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getContactInformation().getCity());
+                address.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getContactInformation().getAddress());
+                telephoneNumber.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getContactInformation().getTelephoneNum());
+                email.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getContactInformation().getEmail());
+                idNumber.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getIdNumber().toString());
+                startDate.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getStartDate().toString());
+                contractType.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getContractType());
 
-                if(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getEndDate()== null)endDate.setText("");
-                else endDate.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getEndDate().toString());
+                if(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getEndDate()== null)endDate.setText("");
+                else endDate.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getEndDate().toString());
 
-                payFrequency.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getPayFreq());
-                accountNumber.setText(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getAccountNum().toString());
-                taxCoefficient.setText(String.valueOf(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getTaxCoeficient()));
-                netSalary.setText(String.valueOf(workerDao.getWorkersInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getNetSalary()));
+                payFrequency.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getPayFreq());
+                accountNumber.setText(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getAccountNum().toString());
+                taxCoefficient.setText(String.valueOf(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getTaxCoeficient()));
+                netSalary.setText(String.valueOf(workerDao.getWorkersAllInfoByNameSurname(newValue.getNameSurname()).getEmploymentInformation().getNetSalary()));
             }
         });
 

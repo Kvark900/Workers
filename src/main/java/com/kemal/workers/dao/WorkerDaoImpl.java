@@ -10,32 +10,29 @@ import java.util.List;
 
 public class WorkerDaoImpl implements WorkerDao {
 
-    //Get Worker (nameSurname)
-    public ObservableList<Worker> getWorkersNameSurname(String department) {
-        ObservableList<Worker> nameSurname = FXCollections.observableArrayList();
-       try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-           session.beginTransaction();
-           org.hibernate.query.Query query= session.createQuery("from Worker where employmentInformation.department =?");
-           query.setParameter(0, department);
-           List<Worker> list = query.list();
+    public ObservableList<Worker> getWorkersWithNameSurname(String department) {
+        ObservableList<Worker> workersWithNameSurname = FXCollections.observableArrayList();
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            org.hibernate.query.Query query = session.createQuery("from Worker where employmentInformation.department = ?");
+            query.setParameter(0, department);
+            List<Worker> list = query.list();
 
-           for (Worker worker:list) {
-               worker.setNameSurname();
-               nameSurname.addAll(( new Worker(worker.getNameSurname())));
-           }
+            for (Worker worker : list) {
+                worker.setNameSurname();
+                workersWithNameSurname.addAll((new Worker(worker.getNameSurname())));
+            }
 
-           session.getTransaction().commit();
-       }
-       catch (Exception e) {
-           e.printStackTrace();
-       }
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-       return nameSurname;
+        return workersWithNameSurname;
     }
 
-    //Delete selected worker
-    public void deleteSelectedWorker (Worker worker, String department){
-        try(Session session = HibernateUtil.getSessionFactory().openSession()){
+    public void deleteSelectedWorker(Worker worker, String department) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             org.hibernate.query.Query query= session.createQuery("delete from Worker where " +
                                                                     "employmentInformation.department = ? and name =? " +
@@ -46,43 +43,22 @@ public class WorkerDaoImpl implements WorkerDao {
             query.executeUpdate();
 
             session.getTransaction().commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    //Get Worker (allInfo)
-    public Worker getWorkersInfoByNameSurname(String nameSurname) {
+    public Worker getWorkersAllInfoByNameSurname(String nameSurname) {
         Worker worker = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            org.hibernate.query.Query query= session.createQuery("from Worker where name =? and surname = ?");
+            org.hibernate.query.Query query = session.createQuery("from Worker where name =? and surname = ?");
             query.setParameter(0, nameSurname.split(" ")[0]);
             query.setParameter(1, nameSurname.split(" ")[1]);
             worker = (Worker) query.uniqueResult();
 
             session.getTransaction().commit();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return worker;
-    }
-
-    public Worker getWorkersIdByNameSurname(String nameSurname) {
-        Worker worker = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
-            session.beginTransaction();
-            org.hibernate.query.Query query= session.createQuery("select id from Worker where name =? and surname = ?");
-            query.setParameter(0, nameSurname.split(" ")[0]);
-            query.setParameter(1, nameSurname.split(" ")[1]);
-            worker = (Worker) query.uniqueResult();
-
-            session.getTransaction().commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -91,29 +67,27 @@ public class WorkerDaoImpl implements WorkerDao {
 
     @Override
     public void saveWorker(Worker worker) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.save(worker);
             System.out.println("Worker has been saved!!");
 
             session.getTransaction().commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
     public void updateWorker(Worker worker) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
 
             session.update(worker);
             System.out.println("Worker has been updated!!");
 
             session.getTransaction().commit();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

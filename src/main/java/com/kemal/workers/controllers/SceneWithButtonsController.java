@@ -13,14 +13,14 @@ public class SceneWithButtonsController {
     @FXML private ImageView mechanical;
     @FXML private ImageView electrical;
 
-    //Show workers from Mechanical Department
     @FXML
     private void mechanicalDepartmentButtonClicked() throws IOException {
-        Main.showMechanicalDepartment();}
+        Main.showMechanicalDepartment();
+    }
 
-    //Show workers from Electrical Department
     @FXML
     private  void electricalDepartmentButtonClicked() throws IOException {
-        Main.showElectricalDepartment();}
+        Main.showElectricalDepartment();
+    }
 
 }

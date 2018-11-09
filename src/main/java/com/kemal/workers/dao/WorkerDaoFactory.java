@@ -7,5 +7,4 @@ public class WorkerDaoFactory {
     public static WorkerDao getWorkerDao(){
         return new WorkerDaoImpl();
     }
-
 }

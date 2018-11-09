@@ -8,13 +8,11 @@ import javafx.css.PseudoClass;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
 
 
@@ -23,41 +21,39 @@ import java.util.function.Predicate;
  */
 public class StageAddEditWorkerService {
 
-    //Method to change date format in JavaFX DatePicker
-    public static void changeDateFormat(DatePicker datePicker){
+    public static void changeDateFormat(DatePicker datePicker) {
         datePicker.setConverter(new StringConverter<LocalDate>() {
             private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             private final DateTimeFormatter dateTimeFormatter1 = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 
             @Override
             public String toString(LocalDate localDate) {
-                if(localDate == null) return "";
+                if (localDate == null) return "";
                 return dateTimeFormatter1.format(localDate);
             }
 
             @Override
             public LocalDate fromString(String dateString) {
-                if(dateString == null || dateString.trim().isEmpty()) {
+                if (dateString == null || dateString.trim().isEmpty()) {
                     return null;
                 }
-                return LocalDate.parse(dateString,dateTimeFormatter1);}
+                return LocalDate.parse(dateString, dateTimeFormatter1);
+            }
         });
     }
 
-    //Disable endDate when contract type is permanent
-    public static void disableEndDate (DatePicker endDate, ChoiceBox<String> contractType){
-        contractType.getSelectionModel().selectedItemProperty().addListener(
-                (ObservableValue<? extends String> observable, String oldValue, String newValue) ->
-                {if (Objects.equals(newValue, "Permanent")) {
-                    endDate.setDisable(true);
+    public static void disableEndDateIfContractTypeIsPermanent(DatePicker endDate, ChoiceBox<String> contractType) {
+        contractType.getSelectionModel().
+                selectedItemProperty().addListener
+                ((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+                    if (Objects.equals(newValue, "Permanent")) {
+                        endDate.setDisable(true);
 
-                }
-                else endDate.setDisable(false);
+                    } else endDate.setDisable(false);
                 });
     }
 
-    //Listen and validate for empty field and change border color
-    public static  <T extends Node> void isEmptyFieldByPredicate(T node, PseudoClass errorClass, Predicate<T> predicate) {
+    public static <T extends Node> void isEmptyFieldByPredicate(T node, PseudoClass errorClass, Predicate<T> predicate) {
         node.focusedProperty().addListener((arg0, oldValue, newValue) -> {
             if (!newValue) {
                 node.pseudoClassStateChanged(errorClass, predicate.test(node));
@@ -65,57 +61,26 @@ public class StageAddEditWorkerService {
         });
     }
 
-    //Validate fields
-    public static  <T extends Node> boolean validateField(T node, Predicate<T> predicate){
-        return (predicate.test(node));
+    public static <T extends Node> boolean validateField(T node, Predicate<T> predicate) {
+        return predicate.test(node);
     }
 
-    //Listen and validate for Double
-    public static boolean isParsableIntoDouble(TextField textField, PseudoClass noDoubleError) {
-        AtomicBoolean isParsable = new AtomicBoolean(false);
-        textField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
-            try {
-                Double.parseDouble(textField.getText().trim());
-                isParsable.set(true);
-            } catch (NumberFormatException e) {
-                System.out.println(e);
-                isParsable.set(false);
-            }
-
+    public static void changeBorderColorIfInputIsValid(Node node, boolean isValid, PseudoClass errorClass) {
+        node.focusedProperty().addListener((arg0, oldValue, newValue) -> {
             if (!newValue) { //when focus lost
-                if (!isParsable.get()) {
-                    textField.pseudoClassStateChanged(noDoubleError, true);
-                } else textField.pseudoClassStateChanged(noDoubleError, false);
+                if (!isValid) {
+                    node.pseudoClassStateChanged(errorClass, true);
+                } else
+                    node.pseudoClassStateChanged(errorClass, false);
             }
         });
-        return isParsable.get();
     }
 
-    //Listen and validate for Long
-    public static boolean isParsableIntoLong(TextField textField, PseudoClass errorClass) {
-        AtomicBoolean isParsable = new AtomicBoolean(false);
-        textField.focusedProperty().addListener((arg0, oldValue, newValue) -> {
-            try {
-                Long.parseLong(textField.getText().trim());
-                isParsable.set(true);
-            } catch (NumberFormatException e) {
-                System.out.println(e);
-                isParsable.set(false);
-            }
-
-            if (!newValue) { //when focus lost
-                if (textField.getText().trim().isEmpty() || !isParsable.get()) {
-                    textField.pseudoClassStateChanged(errorClass, true);
-                } else textField.pseudoClassStateChanged(errorClass, false);
-            }
-        });
-        return  isParsable.get();
-    }
 
     public static Worker createWorker(String name, String surname, LocalDate age, String address,
-                                    String city, String telephoneNumber, String email, String department, Long idNumber,
-                                    LocalDate startDate, String contractType, LocalDate endDate, String payFreq,
-                                    Long accountNumber, double taxCoeficient, double netSalary){
+                                      String city, String telephoneNumber, String email, String department,
+                                      Long idNumber, LocalDate startDate, String contractType, LocalDate endDate,
+                                      String payFreq, Long accountNumber, double taxCoeficient, double netSalary) {
 
         Worker worker = new Worker();
 
@@ -144,8 +109,6 @@ public class StageAddEditWorkerService {
         worker.setEmploymentInformation(employmentInformation);
         return worker;
     }
-
-
 
 
 }
