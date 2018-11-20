@@ -3,14 +3,14 @@ GUI application for CRUD operations on workers in a database
 
 ### Prerequisites
 
--JDK 1.8
+* JDK 1.8
 
--Maven
+* Maven
 
 ### Dependencies:
--H2
+* H2
 
--Hibernate
+* Hibernate
 
 ## How to run
 
