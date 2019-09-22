@@ -3,7 +3,7 @@ package com.kemal.workers.controllers;
 import com.kemal.workers.dao.WorkerDao;
 import com.kemal.workers.dao.WorkerDaoFactory;
 import com.kemal.workers.model.Worker;
-import com.kemal.workers.service.DepartmentsService;
+import com.kemal.workers.util.WorkerFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ElectricalDepartmentController {
+public class ElectricalDepartmentController extends DepartmentsBaseController{
 
     @FXML
     private Label name;
@@ -66,39 +66,38 @@ public class ElectricalDepartmentController {
 
     @FXML
     public void refreshButtonClicked() {
-        workersList.removeAll(workersList);
+        workersList.clear();
         populateTable();
     }
 
     @FXML
     private void deleteButtonClicked() {
-        Worker selectedWorker = workersTable.getSelectionModel().getSelectedItem();
-        workersTable.getItems().remove(selectedWorker);
-        workerDao.deleteSelectedWorker(selectedWorker, "Electrical");
+        Worker worker = workersTable.getSelectionModel().getSelectedItem();
+        workersTable.getItems().remove(worker);
+        workerDao.deleteWorker(worker.getId());
     }
 
     @FXML
     public void populateTable() {
-        for (Worker worker : workerDao.getWorkersWithNameSurname("Electrical")) workersList.addAll(worker);
+        workersList.addAll(workerDao.getWorkersByDepartment("Electrical"));
         workersTable.setItems(workersList);
     }
 
     @FXML
     private void rowSelected() {
-        DepartmentsService.showWorkersInformationWhenRowIsSelected(workersTable, name, surname, age, city, address,
-                telephoneNum, email, idNumber, startDate, contractType, endDate, payFrequency, accountNumber,
-                taxCoefficient, netSalary);
+        WorkerFactory.showWorkersInformation(workersTable, name, surname, age, city, address,
+                                                  telephoneNum, email, idNumber, startDate, contractType, endDate,
+                                                  payFrequency, accountNumber, taxCoefficient, netSalary);
     }
 
     @FXML
     public void editButtonClicked() {
         try {
-            DepartmentsService.editButtonClicked(workersTable);
+            editButtonClicked(workersTable);
         } catch (Exception e) {
             e.printStackTrace();
         }
         refreshButtonClicked();
-
     }
 
 

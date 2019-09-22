@@ -10,23 +10,10 @@ public class Worker {
     private String name;
     private String surname;
     private LocalDate age;
-
-    @Transient
-    private String nameSurname;
-
     private ContactInformation contactInformation;
     private EmploymentInformation employmentInformation;
 
     public Worker() {
-    }
-
-    public Worker(String nameSurname) {
-        this.nameSurname = nameSurname;
-    }
-
-    public void setNameSurname() {
-
-        this.nameSurname = this.name + " " + this.surname;
     }
 
     public ContactInformation getContactInformation() {
@@ -78,7 +65,7 @@ public class Worker {
     }
 
     public String getNameSurname() {
-        return nameSurname;
+        return name + " " + surname;
     }
 
 }

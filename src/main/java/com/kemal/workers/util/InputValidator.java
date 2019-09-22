@@ -1,6 +1,8 @@
-package com.kemal.workers.service;
+package com.kemal.workers.util;
 
 public class InputValidator {
+    private InputValidator(){}
+
     public static boolean isParsableIntoLong(String input) {
         try {
             Long.parseLong(input);
@@ -11,7 +13,7 @@ public class InputValidator {
         }
     }
 
-    public static boolean isConvertibleIntoDouble(String input) {
+    public static boolean isParsableIntoDouble(String input) {
         try {
             Double.parseDouble(input);
             return true;

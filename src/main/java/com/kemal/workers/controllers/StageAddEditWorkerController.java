@@ -3,23 +3,30 @@ package com.kemal.workers.controllers;
 import com.kemal.workers.dao.WorkerDao;
 import com.kemal.workers.dao.WorkerDaoFactory;
 import com.kemal.workers.model.Worker;
-import com.kemal.workers.service.InputValidator;
-import com.kemal.workers.service.StageAddEditWorkerService;
+import com.kemal.workers.util.WorkerFactory;
+import com.kemal.workers.util.InputValidator;
+import com.kemal.workers.util.Util;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.lang.reflect.Field;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class StageAddEditWorkerController {
     //region UI Fields
+    @FXML
+    private BorderPane rootPane;
     @FXML
     private TextField name;
     @FXML
@@ -65,149 +72,58 @@ public class StageAddEditWorkerController {
     private final ObservableList<String> departmentList = FXCollections.observableArrayList("Mechanical", "Electrical");
     private final ObservableList<String> contractTypeList = FXCollections.observableArrayList("Permanent", "Fixed-term");
     private final ObservableList<String> payFreqList = FXCollections.observableArrayList("Weekly", "Monthly");
-    private final PseudoClass textFieldRedBorder = PseudoClass.getPseudoClass("textFieldRedBorder");
-    private final PseudoClass datePickerRedBorder = PseudoClass.getPseudoClass("datePickerRedBorder");
-    private final PseudoClass choiceBoxRedBorder = PseudoClass.getPseudoClass("choiceBoxRedBorder");
+    private final PseudoClass errorClass = PseudoClass.getPseudoClass("error");
+    private final List<Control> allControls = new ArrayList<>();
     private final List<Control> requiredFields = new ArrayList<>();
-    private boolean isInEditMode = false;
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+    private boolean isInEditMode;
     private static Long id;
 
-    @FXML
-    private BorderPane rootPane;
-
-
     public void initialize() {
-        departmentBox.setItems(departmentList);
-        contractType.setItems(contractTypeList);
-        payFrequency.setItems(payFreqList);
-
-        Control[] allControls = {name, surname, age, address, city, telephoneNumber,
-                                email, departmentBox, idNumber, startDate, contractType,
-                                endDate, payFrequency, accountNumber, taxCoeficient, netSalary};
-
-        //Getting only required fields
-        for (Control control : allControls)
-            if (!control.getId().equals(email.getId()))
-                requiredFields.add(control);
-
-        //region Changing date format
-        StageAddEditWorkerService.changeDateFormat(age);
-        StageAddEditWorkerService.changeDateFormat(startDate);
-        StageAddEditWorkerService.changeDateFormat(endDate);
-        //endregion
-
-        StageAddEditWorkerService.disableEndDateIfContractTypeIsPermanent(endDate, contractType);
-
-        //enterKeyPressed -> focus on the next item
-        for (int i = 0; i < allControls.length - 1; i++) {
-            Control nextControl = allControls[i + 1];
-            allControls[i].addEventHandler(ActionEvent.ACTION, e -> nextControl.requestFocus());
-        }
-
-        okButton.setOnKeyPressed((KeyEvent event) -> {
-            switch (event.getCode()) {
-                case ENTER:
-                    try {
-                        okButtonClicked();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-            }
-        });
-
-
-        //region Listening and checking for an empty input on required fields
-        //==============================================================================================================
-        for (Control control : requiredFields) {
-            if (control instanceof TextField)
-                StageAddEditWorkerService.isEmptyFieldByPredicate((TextField) control, textFieldRedBorder,
-                        field -> field.getText().trim().isEmpty());
-            else if (control instanceof DatePicker)
-                StageAddEditWorkerService.isEmptyFieldByPredicate((DatePicker) control, datePickerRedBorder,
-                        picker -> picker.getValue() == null);
-            else
-                StageAddEditWorkerService.isEmptyFieldByPredicate((ChoiceBox) control, choiceBoxRedBorder,
-                        box -> box.getValue() == null);
-        }
-        //==============================================================================================================
-        //endregion
-
-
-        //region Validating fields for Long and Double variables
-        //==============================================================================================================
-        StageAddEditWorkerService.changeBorderColorIfInputIsValid(idNumber, InputValidator.isParsableIntoLong(idNumber.getText()), textFieldRedBorder);
-        StageAddEditWorkerService.changeBorderColorIfInputIsValid(accountNumber, InputValidator.isParsableIntoLong(accountNumber.getText()), textFieldRedBorder);
-        StageAddEditWorkerService.changeBorderColorIfInputIsValid(taxCoeficient, InputValidator.isConvertibleIntoDouble(taxCoeficient.getText()), textFieldRedBorder);
-        StageAddEditWorkerService.changeBorderColorIfInputIsValid(netSalary, InputValidator.isConvertibleIntoDouble(netSalary.getText()), textFieldRedBorder);
-        //==============================================================================================================
-        //endregion
-
+        initFields();
+        initChoiceBoxItems();
+        changeDateFormat();
+        initListenerForContractType();
+        initValidationListeners();
+        initEventHandlerForFocusChangeOnEnter();
+        initEventHandlerForOkButtonEnterPressed();
     }
 
     @FXML
     private void okButtonClicked() {
         WorkerDao workerDao = WorkerDaoFactory.getWorkerDao();
-        int numberOfFilledFields = 0;
-        boolean isParsableIntoDouble = false;
-        boolean isParsableIntoLong = false;
-
         if (endDate.isDisabled())
             requiredFields.remove(endDate);
-
-        //Check if all required fields are valid
-        for (Control control : requiredFields) {
-            if (control instanceof TextField && (control.equals(idNumber) || control.equals(accountNumber))) {
-                isParsableIntoLong = InputValidator.isParsableIntoLong(((TextField) control).getText());
-                StageAddEditWorkerService.changeBorderColorIfInputIsValid(control, isParsableIntoLong, textFieldRedBorder);
-            } else if (control instanceof TextField && (control.equals(taxCoeficient) || control.equals(netSalary))) {
-                isParsableIntoDouble = InputValidator.isConvertibleIntoDouble(((TextField) control).getText());
-                StageAddEditWorkerService.changeBorderColorIfInputIsValid(control, isParsableIntoDouble, textFieldRedBorder);
-            }
-
-            //region Counting number of filled fields
-            if (control instanceof TextField) {
-                if (!StageAddEditWorkerService.validateField((TextField) control, field -> field.getText().trim().isEmpty()))
-                    numberOfFilledFields++;
-                else control.pseudoClassStateChanged(textFieldRedBorder, true);
-            }
-            else if (control instanceof DatePicker) {
-                if (!StageAddEditWorkerService.validateField((DatePicker) control, field -> field.getValue() == null))
-                    numberOfFilledFields++;
-                else control.pseudoClassStateChanged(datePickerRedBorder, true);
-            }
-            else {
-                if (!StageAddEditWorkerService.validateField((ChoiceBox) control, field -> field.getValue() == null))
-                    numberOfFilledFields++;
-                else control.pseudoClassStateChanged(choiceBoxRedBorder, true);
-            }
-            //endregion
-        }
-
-        //If required fields are valid, save data
-        if (numberOfFilledFields == requiredFields.size() && isParsableIntoDouble && isParsableIntoLong) {
-            Worker worker = StageAddEditWorkerService.createWorker(name.getText().trim(),surname.getText().trim(),
-                                                                    age.getValue(), address.getText().trim(),
-                                                                    city.getText().trim(), telephoneNumber.getText().trim(),
-                                                                    email.getText().trim(), departmentBox.getValue(),
-                                                                    Long.parseLong(idNumber.getText().trim()),
-                                                                    startDate.getValue(), contractType.getValue(),
-                                                                    endDate.getValue(), payFrequency.getValue(),
-                                                                    Long.parseLong(accountNumber.getText().trim()),
-                                                                    Double.parseDouble(taxCoeficient.getText().trim()),
-                                                                    Double.parseDouble(netSalary.getText().trim()));
+        if (isValidOnSubmit()) {
+            Worker worker = WorkerFactory.createWorker(name.getText().trim(), surname.getText().trim(),
+                                                        age.getValue(), address.getText().trim(),
+                                                        city.getText().trim(), telephoneNumber.getText().trim(),
+                                                        email.getText().trim(), departmentBox.getValue(),
+                                                        Long.parseLong(idNumber.getText().trim()),
+                                                        startDate.getValue(), contractType.getValue(),
+                                                        endDate.getValue(), payFrequency.getValue(),
+                                                        Long.parseLong(accountNumber.getText().trim()),
+                                                        Double.parseDouble(taxCoeficient.getText().trim()),
+                                                        Double.parseDouble(netSalary.getText().trim()));
             if (isInEditMode) {
                 worker.setId(id);
                 workerDao.updateWorker(worker);
-            }
-            else
-                workerDao.saveWorker(worker);
-
+            } else workerDao.saveWorker(worker);
             closeButtonClicked();
-
         } else {
             error1.setText("Fill in all red fields");
             error2.setText("Fill in all red fields");
         }
+    }
+
+    private boolean isValidOnSubmit() {
+        boolean valid = true;
+        for (Control control : requiredFields) {
+            boolean validField = isValidField(control);
+            control.pseudoClassStateChanged(errorClass, !validField);
+            if (valid && !validField) valid = false;
+        }
+        return valid;
     }
 
     @FXML
@@ -216,12 +132,10 @@ public class StageAddEditWorkerController {
         stage.close();
     }
 
-    public void showEditWorkerOldInformation(Worker worker) {
+    public void showWorkersOldInformation(Worker worker) {
         WorkerDao workerDao = WorkerDaoFactory.getWorkerDao();
-        Worker oldWorker = workerDao.getWorkersAllInfoByNameSurname(worker.getNameSurname());
-
+        Worker oldWorker = workerDao.getWorker(worker.getId());
         id = oldWorker.getId();
-
         name.setText(oldWorker.getName());
         surname.setText(oldWorker.getSurname());
         age.setValue(oldWorker.getAge());
@@ -236,10 +150,81 @@ public class StageAddEditWorkerController {
         endDate.setValue(oldWorker.getEmploymentInformation().getEndDate());
         payFrequency.setValue(oldWorker.getEmploymentInformation().getPayFreq());
         accountNumber.setText(oldWorker.getEmploymentInformation().getAccountNum().toString());
-        taxCoeficient.setText(String.valueOf(oldWorker.getEmploymentInformation().getTaxCoeficient()));
+        taxCoeficient.setText(String.valueOf(oldWorker.getEmploymentInformation().getTaxCoefficient()));
         netSalary.setText(String.valueOf(oldWorker.getEmploymentInformation().getNetSalary()));
-
         isInEditMode = true;
+    }
+
+    private void initChoiceBoxItems() {
+        departmentBox.setItems(departmentList);
+        contractType.setItems(contractTypeList);
+        payFrequency.setItems(payFreqList);
+    }
+
+    private void initFields() {
+        try {
+            Field[] declaredFields = this.getClass().getDeclaredFields();
+            for (Field field : declaredFields) {
+                Object o = field.get(this);
+                if (!isInputField(o)) continue;
+                Control control = (Control) o;
+                allControls.add(control);
+                if (!control.getId().equals(email.getId()))
+                    requiredFields.add(control);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean isInputField(Object control) {
+        return control instanceof TextField || control instanceof DatePicker || control instanceof ChoiceBox;
+    }
+
+    private void changeDateFormat() {
+        Util.changeDateFormat(age, DATE_TIME_FORMATTER);
+        Util.changeDateFormat(startDate, DATE_TIME_FORMATTER);
+        Util.changeDateFormat(endDate, DATE_TIME_FORMATTER);
+    }
+
+    private void initEventHandlerForFocusChangeOnEnter() {
+        for (int i = 0; i < allControls.size() - 1; i++) {
+            Control nextControl = allControls.get(i + 1);
+            allControls.get(i).addEventHandler(ActionEvent.ACTION, e -> nextControl.requestFocus());
+        }
+    }
+
+    private void initEventHandlerForOkButtonEnterPressed() {
+        okButton.setOnKeyPressed((KeyEvent event) -> {
+            if (event.getCode().equals(KeyCode.ENTER)) {
+                try { okButtonClicked(); }
+                catch (Exception e) { e.printStackTrace(); }
+            }
+        });
+    }
+
+    private void initValidationListeners() {
+        requiredFields.forEach(c -> Util.addListener(c, this::isValidField, errorClass));
+    }
+
+    private boolean isValidField(Control control) {
+        if (control instanceof TextField) {
+            if (((TextField) control).getText().trim().isEmpty())
+                return false;
+            else if (control == idNumber || control == accountNumber)
+                return InputValidator.isParsableIntoLong(((TextField) control).getText());
+            else if (control == taxCoeficient || control == netSalary)
+                return InputValidator.isParsableIntoDouble(((TextField) control).getText());
+        } else if (control instanceof DatePicker)
+            return ((DatePicker) control).getValue() != null;
+        else if (control instanceof ChoiceBox)
+            return ((ChoiceBox) control).getValue() != null;
+        return true;
+    }
+
+    private void initListenerForContractType() {
+        contractType.getSelectionModel().selectedItemProperty()
+                .addListener((observable, oldValue, newValue) -> {endDate.setDisable(Objects.equals(newValue, "Permanent"));});
     }
 
 }

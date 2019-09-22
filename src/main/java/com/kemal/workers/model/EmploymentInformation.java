@@ -16,7 +16,7 @@ public class EmploymentInformation {
     private LocalDate endDate;
     private String payFreq;
     private Long accountNum;
-    private double taxCoeficient;
+    private double taxCoefficient;
     private double netSalary;
 
     public EmploymentInformation() {
@@ -79,12 +79,12 @@ public class EmploymentInformation {
         this.accountNum = accountNum;
     }
 
-    public double getTaxCoeficient() {
-        return taxCoeficient;
+    public double getTaxCoefficient() {
+        return taxCoefficient;
     }
 
-    public void setTaxCoeficient(double taxCoeficient) {
-        this.taxCoeficient = taxCoeficient;
+    public void setTaxCoefficient(double taxCoeficient) {
+        this.taxCoefficient = taxCoeficient;
     }
 
     public double getNetSalary() {

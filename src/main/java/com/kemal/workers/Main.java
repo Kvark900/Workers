@@ -2,6 +2,7 @@ package com.kemal.workers;
 
 import com.kemal.workers.controllers.ElectricalDepartmentController;
 import com.kemal.workers.controllers.MechanicalDepartmentController;
+import com.kemal.workers.dao.HibernateUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,6 +24,7 @@ public class Main extends Application {
         mainStage.resizableProperty().setValue(Boolean.FALSE);
         showLayoutWithHomeAndAdd();
         showSceneWithButtons();
+        mainStage.setOnCloseRequest(event -> HibernateUtil.shutdown());
     }
 
     private static void showLayoutWithHomeAndAdd() throws IOException {
