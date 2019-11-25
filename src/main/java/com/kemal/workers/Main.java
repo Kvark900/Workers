@@ -28,8 +28,7 @@ public class Main extends Application {
     }
 
     private static void showLayoutWithHomeAndAdd() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/views/Layout.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/Layout.fxml"));
         layoutWithHomeAndAdd = loader.load();
         Scene scena1 = new Scene(layoutWithHomeAndAdd);
         mainStage.setScene(scena1);
@@ -37,34 +36,29 @@ public class Main extends Application {
     }
 
     public static void showSceneWithButtons() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/views/SceneWithButtons.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/SceneWithButtons.fxml"));
         BorderPane rasporedSaDugmadima = loader.load();
         layoutWithHomeAndAdd.setCenter(rasporedSaDugmadima);
     }
 
     public static void showElectricalDepartment() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/views/ElectricalDepartment.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/ElectricalDepartment.fxml"));
         BorderPane elOdjel = loader.load();
-        ElectricalDepartmentController electricalDepartmentController = loader.getController();
-        electricalDepartmentController.populateTable();
+        ElectricalDepartmentController controller = loader.getController();
+        controller.populateTable();
         layoutWithHomeAndAdd.setCenter(elOdjel);
     }
 
     public static void showMechanicalDepartment() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/views/MechanicalDepartment.fxml"));
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("/views/MechanicalDepartment.fxml"));
         BorderPane mehOdjel = loader.load();
-        MechanicalDepartmentController mechanicalDepartmentController = loader.getController();
-        mechanicalDepartmentController.populateTable();
+        MechanicalDepartmentController controller = loader.getController();
+        controller.populateTable();
         layoutWithHomeAndAdd.setCenter(mehOdjel);
     }
 
     public static void showStageAdd() throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(Main.class.getResource("/views/StageAddEditWorker.fxml"));
-        BorderPane addWorkerPane = loader.load();
+        BorderPane addWorkerPane = FXMLLoader.load(Main.class.getResource("/views/StageAddEditWorker.fxml"));
         Stage stageAdd = new Stage();
         stageAdd.setTitle("Add New Worker");
         stageAdd.resizableProperty().setValue(Boolean.FALSE);
